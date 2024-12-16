@@ -2,7 +2,7 @@ const blogPosts = [
     {
         id: 1,
         title: "Discovering my path in cyber",
-        preview: "Now that I've broken into the field of cybersecurity, now what?",
+        preview: "Now that I've broken into the field of cybersecurity, what next?",
         content: `
             <h2>Discovering my path in cyber</h2>
 
