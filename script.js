@@ -73,12 +73,8 @@ function loadSectionContent(sectionId, element) {
                 break;
             case 'projects':
                 element.innerHTML = `<ul>
-                    <li>Deployed MDR solutions to dozens of clients in under 2 months, including cloud, hybrid, and on-prem topologies</li>
-                    <li>Fine-tuned detection rules and SOAR workflows</li>
-                    <li>Worked with senior leadership to deliver executive reports</li>
-                    <li>Automated security assessments of infrastructure configuration</li>
-                    <li>Consulted financial clients on security policy and standard best practices</li>
-                    <li>Full stack development of a NIDS (see on my GitHub)</li>
+                    <li>Deployed MDR solutions to dozens of clients in under 2 months, including cloud, hybrid, and on-prem topologies. This project was constrained to a strict deadline which I drove for my team to beat by encouraging cross team collaboration and being personally available to troubleshoot or advise on every step of the process.</li>
+                    <li>Developed a tool to verify integrity of logging across 50 clients in under 30 seconds. The previous manual approach to this process took at least 20 hours a month and could not possibly be completed as thoroughly as an automated check. This allowed me to GUARANTEE a level of baseline level visibility into client networks that had never been achieved.</li>
                     </ul>`;
                 break;
             case 'blog':
