@@ -45,7 +45,7 @@ function loadSectionContent(sectionId, element) {
                 element.innerHTML = `
                     <div class="about-container">
                         <img src="images/about-me.jpg" alt="Theo Brucker Portrait" class="about-image">
-                        <p>During my bachelors degree I researched Information Privacy and presented my research at an IEEE conference in Hannover, Germany. I have experimented in Software Development developing security tools leveraging state of the art machine learning algorithms to detect network intrusions. Most recently I passed my CISSP exam, and have been working full time as a SOC I at a regional MSP in New England.</p>
+                        <p>During my bachelors degree I researched Information Privacy and presented my research at an IEEE conference in Hannover, Germany. I enjoy developing security tools and automating security operations. Most recently I passed my CISSP exam, and have been working full time as a tier one SOC where I have gained valuable experience such as automating tasks to drive efficiency and reduce burnout, and detecting and containing real live incidents.</p>
                     </div>
                 `;
                 break;
@@ -75,6 +75,8 @@ function loadSectionContent(sectionId, element) {
                 element.innerHTML = `<ul>
                     <li>Deployed MDR solutions to dozens of clients in under 2 months, including cloud, hybrid, and on-prem topologies. This project was constrained to a strict deadline which I drove for my team to beat by encouraging cross team collaboration and being personally available to troubleshoot or advise on every step of the process.</li>
                     <li>Developed a tool to verify integrity of logging across 50 clients in under 30 seconds. The previous manual approach to this process took at least 20 hours a month and could not possibly be completed as thoroughly as an automated check. This allowed me to GUARANTEE a level of baseline level visibility into client networks that had never been achieved.</li>
+                    <li>A full stack development project for a Network Intrusion Detection System powered by transformer based machine learning techniques to catch extremely complex anomalies at extremely competitive rates on common intrusion and anomaly detection datasets. This project was also an opportunity to practice my DevOps skills, implementing CI/CD strategies and containerization for flexible scaling of resource utilization</li>
+                    <li>Developed a custom Azure KeyVault client in a low level programming language. This was great exposure to the inner working of the Microsoft Azure API endpoints, and also allowed me to practice my system level coding practices to secure the credentials and authorization tokens used by the tool.</li>
                     </ul>`;
                 break;
             case 'blog':
