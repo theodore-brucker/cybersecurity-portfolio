@@ -71,15 +71,31 @@ function loadSectionContent(sectionId, element) {
                     </p>
                 </div>`;
                 break;
-            case 'projects':
-                element.innerHTML = `<ul>
-                    <li>Deployed MDR solutions to dozens of clients in under 2 months, including cloud, hybrid, and on-prem topologies. This project was constrained to a strict deadline which I drove for my team to beat by encouraging cross team collaboration and being personally available to troubleshoot or advise on every step of the process.</li>
-                    <li>Developed a tool to verify integrity of logging across 50 clients in under 30 seconds. The previous manual approach to this process took at least 20 hours a month and could not possibly be completed as thoroughly as an automated check. This allowed me to GUARANTEE a level of baseline level visibility into client networks that had never been achieved.</li>
-                    <li>A full stack development project for a Network Intrusion Detection System powered by transformer based machine learning techniques to catch extremely complex anomalies at extremely competitive rates on common intrusion and anomaly detection datasets. This project was also an opportunity to practice my DevOps skills, implementing CI/CD strategies and containerization for flexible scaling of resource utilization</li>
-                    <li>Developed a custom Azure KeyVault client in a low level programming language. This was great exposure to the inner working of the Microsoft Azure API endpoints, and also allowed me to practice my system level coding practices to secure the credentials and authorization tokens used by the tool.</li>
+                case 'projects':
+                    element.innerHTML = `<ul class="project-list">
+                        <li>
+                            [Private]MDR Deployment Project
+                            <p>Deployed MDR solutions to dozens of clients in under 2 months, including cloud, hybrid, and on-prem topologies. This project was constrained to a strict deadline which I drove for my team to beat by encouraging cross team collaboration and being personally available to troubleshoot or advise on every step of the process.</p>
+                        </li>
+                        <li>
+                            [Private]Logging Verification Tool
+                            <p>Developed a tool to verify integrity of logging across 50 clients in under 30 seconds. The previous manual approach to this process took at least 20 hours a month and could not possibly be completed as thoroughly as an automated check. This allowed me to GUARANTEE a level of baseline level visibility into client networks that had never been achieved.</p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/theodore-brucker/CoveSecurity" target="_blank">[Public]</a>ML-Powered NIDS
+                            <p>A full stack development project for a Network Intrusion Detection System powered by transformer based machine learning techniques to catch extremely complex anomalies at extremely competitive rates on common intrusion and anomaly detection datasets. This project was also an opportunity to practice my DevOps skills, implementing CI/CD strategies and containerization for flexible scaling of resource utilization</p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/theodore-brucker/zig-azure-keyvault-client" target="_blank">[Public]</a>Azure KeyVault Client
+                            <p>Developed a custom Azure KeyVault client in a low level programming language. This was great exposure to the inner working of the Microsoft Azure API endpoints, and also allowed me to practice my system level coding practices to secure the credentials and authorization tokens used by the tool.</p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/theodore-brucker/scoutnet" target="_blank">[Public]</a>Scoutnet
+                            <p>Developed and deployed a distributed Honeynet server/client infrastructure to collect data on threat actor campaigns targeting Azure hosted resources. This required extensive knowledge of Linux, low level programming, Azure, and cloud security concepts.</p>
+                        </li>
                     </ul>`;
-                break;
-            case 'blog':
+                    break;
+                case 'blog':
                 loadBlogPosts(element);
                 break;
         }
