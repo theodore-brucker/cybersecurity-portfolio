@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="64" height="64"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#2A2420"></rect>
+  
+  <!-- Shield outline -->
+  <path d="M32 8 L54 16 L54 32 C54 43 44 50 32 56 C20 50 10 43 10 32 L10 16 Z" fill="#A45C40" stroke="#E6D5B8" stroke-width="2"></path>
+  
+  <!-- Inner shield -->
+  <path d="M32 14 L48 20 L48 32 C48 40 40 46 32 50 C24 46 16 40 16 32 L16 20 Z" fill="#E59560"></path>
+  
+  <!-- Lock symbol -->
+  <rect x="26" y="32" width="12" height="10" rx="2" ry="2" fill="#2A2420"></rect>
+  <rect x="29" y="26" width="6" height="12" rx="3" ry="3" fill="#2A2420"></rect>
+  <rect x="30" y="34" width="4" height="6" rx="1" ry="1" fill="#F2A65A"></rect>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>
