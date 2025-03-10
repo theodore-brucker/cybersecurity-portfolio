@@ -66,8 +66,10 @@ function loadSectionContent(sectionId, element) {
                 element.innerHTML = 
                 `<div class="experience-container">
                     <img src="images/se-logo.jpeg" alt="Systems Engineering logo" class="experience-image">
-                    <p>Security Analyst, Systems Engineering, 2023-Present<br>
-                       Network Engineering Intern, Systems Engineering, 2022-2023
+                    <p>
+                       Security Analyst II, Systems Engineering, Jan 2025 - Present<br>
+                       Security Analyst I, Systems Engineering, Jan 2023 - Jan 2025<br>
+                       Network Engineering Intern, Systems Engineering, May 2022 - Dec 2022
                     </p>
                 </div>`;
                 break;
