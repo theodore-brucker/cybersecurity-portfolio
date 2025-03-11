@@ -76,6 +76,10 @@ function loadSectionContent(sectionId, element) {
                 case 'projects':
                     element.innerHTML = `<ul class="project-list">
                         <li>
+                            [Private]MDR Playbook
+                            <p>Developed and maintained an initial triage and response playbook for an active team of 10 MDR analysts, reducing time to respond and increasing consistency and effectiveness across the board. Follows various incident response standards and focuses specifically on detection, initial response, mitigation, and escalation+triage proesses.</p> 
+                        </li>
+                        <li>
                             [Private]MDR Deployment Project
                             <p>Deployed MDR solutions to dozens of clients in under 2 months, including cloud, hybrid, and on-prem topologies. This project was constrained to a strict deadline which I drove for my team to beat by encouraging cross team collaboration and being personally available to troubleshoot or advise on every step of the process.</p>
                         </li>
