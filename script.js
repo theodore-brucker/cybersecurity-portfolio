@@ -55,67 +55,70 @@ function loadSectionContent(sectionId, element) {
                 `<div class="experience-container">
                     <img src="images/fmi-logo.png" alt="Fiber Materials Inc" class="experience-image">
                     <p>
-                       Cyber Security Specialist, June 2025 - Present<br>
+                       <strong>Cyber Security Specialist, July 2025 - Present</strong><br>
+                       Built cybersecurity programs including vulnerability management, awareness training, and incident response. Sourced and deployed security solutions (EDR, SIEM, ITDR, MFA). Led NIST 800-171 gap analysis and compliance efforts.
                     </p>
                 </div>
                 <div class="experience-container">
                     <img src="images/se-logo.jpeg" alt="Systems Engineering logo" class="experience-image">
                     <p>
-                       Security Analyst II, Jan 2025 - June 2025<br>
-                       Security Analyst I, Jan 2023 - Jan 2025<br>
-                       Network Engineering Intern, May 2022 - Dec 2022
+                       <strong>SOC Analyst II, February 2025 - June 2025</strong><br>
+                       Shadowed incident response on active breaches (BEC, ransomware, insider threat). Created incident response playbook reducing triage times by 20%. SME on SIEM, SOAR, and XDR platforms.<br><br>
+                       <strong>SOC Analyst I, August 2022 - February 2025</strong><br>
+                       24/7 SOC operations for ~100 client environments. Developed automation tools, deployed security solutions, and drove cross-team collaboration.<br><br>
+                       <strong>Network Engineering Intern, May 2022 - August 2022</strong>
                     </p>
                 </div>`;
                 break;
-                case 'projects':
-                    element.innerHTML = `<ul class="project-list">
-                        <li>
-                            <span class="project-title">CMMC 2.0 compliance</span>
-                            <div class="project-tags">
-                                <span class="project-tag">Governance, Risk, Compliance</span>
-                                <span class="project-tag">Manufacturing</span>
-                                <span class="project-tag">Project Management</span>
-                                <span class="project-tag">Cybersecurity Operations</span>
-                            </div>
-                            <p>Organization wide lead on compliance with Cybersecurity Maturity Model Certification (CMMC) including policies and procedures, technical implementation of NIST 800-171 R2 controls, evidence collection, executive reporting and advising, and staying up to date on all CMMC 2.0 news and timelines.</p> 
-                        </li>
-                        <li>
-                            <span class="project-title">Incident Response Playbook Development</span>
-                            <div class="project-tags">
-                                <span class="project-tag">Documentation</span>
-                                <span class="project-tag">Incident Response</span>
-                            </div>
-                            <p>Developed and maintained a triage and response playbook for an active team of 10 SOC analysts, reducing time to respond and increasing consistency and effectiveness across the board. Follows various incident response standards and focuses specifically on detection, initial response, mitigation, and escalation+triage processes.</p> 
-                        </li>
-                        <li>
-                            <span class="project-title">MDR Deployments</span>
-                            <div class="project-tags">
-                                <span class="project-tag">Deployment</span>
-                                <span class="project-tag">Team Leadership</span>
-                            </div>
-                            <p>Deployed MDR solutions to dozens of clients in under 2 months, including cloud, hybrid, and on-prem topologies. This project was constrained to a strict deadline which I drove for my team to beat by encouraging cross team collaboration and being personally available to troubleshoot or advise on every step of the process.</p>
-                        </li>
-                        <li>
-                            <span class="project-title">Logging Verification Tool</span>
-                            <div class="project-tags">
-                                <span class="project-tag">Automation</span>
-                                <span class="project-tag">Security Monitoring</span>
-                            </div>
-                            <p>Developed a tool to verify integrity of logging across 50 clients in under 30 seconds. The previous manual approach to this process took at least 20 hours a month and could not possibly be completed as thoroughly as an automated check. This allowed me to GUARANTEE a level of baseline level visibility into client networks that had never been achieved.</p>
-                        </li>
-                        <li>
-                            <span class="project-title">
-                                <a href="https://github.com/theodore-brucker/CoveSecurity" target="_blank" class="project-link">[Public] ML-Powered NIDS</a>
-                            </span>
-                            <div class="project-tags">
-                                <span class="project-tag">Machine Learning</span>
-                                <span class="project-tag">Network Security</span>
-                                <span class="project-tag">DevOps</span>
-                            </div>
-                            <p>A full stack development project for a Network Intrusion Detection System powered by transformer based machine learning techniques to catch extremely complex anomalies at extremely competitive rates on common intrusion and anomaly detection datasets. This project was also an opportunity to practice my DevOps skills, implementing CI/CD strategies and containerization for flexible scaling of resource utilization.</p>
-                        </li>
-                    </ul>`;
-                    break;
+            case 'projects':
+                element.innerHTML = `<ul class="project-list">
+                    <li>
+                        <span class="project-title">CMMC 2.0 compliance</span>
+                        <div class="project-tags">
+                            <span class="project-tag">Governance, Risk, Compliance</span>
+                            <span class="project-tag">Manufacturing</span>
+                            <span class="project-tag">Project Management</span>
+                            <span class="project-tag">Cybersecurity Operations</span>
+                        </div>
+                        <p>Organization wide lead on compliance with Cybersecurity Maturity Model Certification (CMMC) including policies and procedures, technical implementation of NIST 800-171 R2 controls, evidence collection, executive reporting and advising, and staying up to date on all CMMC 2.0 news and timelines.</p> 
+                    </li>
+                    <li>
+                        <span class="project-title">Incident Response Playbook Development</span>
+                        <div class="project-tags">
+                            <span class="project-tag">Documentation</span>
+                            <span class="project-tag">Incident Response</span>
+                        </div>
+                        <p>Developed and maintained a triage and response playbook for an active team of 10 SOC analysts, reducing time to respond and increasing consistency and effectiveness across the board. Follows various incident response standards and focuses specifically on detection, initial response, mitigation, and escalation+triage processes.</p> 
+                    </li>
+                    <li>
+                        <span class="project-title">MDR Deployments</span>
+                        <div class="project-tags">
+                            <span class="project-tag">Deployment</span>
+                            <span class="project-tag">Team Leadership</span>
+                        </div>
+                        <p>Deployed MDR solutions to dozens of clients in under 2 months, including cloud, hybrid, and on-prem topologies. This project was constrained to a strict deadline which I drove for my team to beat by encouraging cross team collaboration and being personally available to troubleshoot or advise on every step of the process.</p>
+                    </li>
+                    <li>
+                        <span class="project-title">Logging Verification Tool</span>
+                        <div class="project-tags">
+                            <span class="project-tag">Automation</span>
+                            <span class="project-tag">Security Monitoring</span>
+                        </div>
+                        <p>Developed a tool to verify integrity of logging across 50 clients in under 30 seconds. The previous manual approach to this process took at least 20 hours a month and could not possibly be completed as thoroughly as an automated check. This allowed me to GUARANTEE a level of baseline level visibility into client networks that had never been achieved.</p>
+                    </li>
+                    <li>
+                        <span class="project-title">
+                            <a href="https://github.com/theodore-brucker/CoveSecurity" target="_blank" class="project-link">[Public] ML-Powered NIDS</a>
+                        </span>
+                        <div class="project-tags">
+                            <span class="project-tag">Machine Learning</span>
+                            <span class="project-tag">Network Security</span>
+                            <span class="project-tag">DevOps</span>
+                        </div>
+                        <p>A full stack development project for a Network Intrusion Detection System powered by transformer based machine learning techniques to catch extremely complex anomalies at extremely competitive rates on common intrusion and anomaly detection datasets. This project was also an opportunity to practice my DevOps skills, implementing CI/CD strategies and containerization for flexible scaling of resource utilization.</p>
+                    </li>
+                </ul>`;
+                break;
             case 'education':
                 element.innerHTML =
                 `<div class="education-container">
