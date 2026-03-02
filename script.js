@@ -126,6 +126,7 @@ function loadSectionContent(sectionId, element) {
                     <img src="images/umaine-logo.jpg" alt="University of Maine logo" class="experience-image">
                     <img src="images/sec-logo.png" alt="CompTIA Security+ logo" class="experience-image">
                     <p>
+                        CMMC Certified Professional, March 2026<br>
                         Associate CISSP, November 2024<br>
                         B.S. in Computer Science, University of Maine, 2024<br>
                         CompTIA Security+, 2023
