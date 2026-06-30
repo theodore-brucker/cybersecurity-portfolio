@@ -46,7 +46,7 @@ function loadSectionContent(sectionId, element) {
                 element.innerHTML = `
                     <div class="about-container">
                         <img src="images/about-me.jpg" alt="Theo Brucker Portrait" class="about-image">
-                        <p>While studying for my BsC at UMaine, I researched Information Privacy focused on GDPR compliance for software developers. In my free time I enjoy tinkering with both state of the art and custom developed security tools. Most recently I passed my CISSP exam and accepted a position as a Cybersecurity Specialist at Fiber Materials Inc (FMI) in Biddeford, ME where I write policies and procedures, select and deploy of security tools (SIEM, EDR, AV), advise on secure networking practices, and act as the primary resource for CMMC 2.0 compliance.</p>
+                        <p>I'm a cybersecurity professional focused on the defense industrial base, currently serving as Cyber Security Specialist / ISSM at Fiber Materials Inc. (FMI) in Biddeford, ME. Over the past year I built FMI's cybersecurity program from the ground up: sourcing and deploying EDR, SIEM, and ITDR tooling, standing up vulnerability management and security awareness programs, and leading the organization's NIST 800-171/CMMC Level 2 effort from gap assessment through control implementation and ongoing C3PAO assessor engagement. I also own accreditation and ongoing management of classified systems under DCSA and NIST 800-53 requirements. In June 2026 I earned my CISSP, adding to my CMMC Certified Professional (CCP) credential from March 2026. Before FMI, I spent time as a SOC analyst at an MSSP, handling incident response across roughly 100 client environments and building out detection and automation tooling. In my free time I enjoy tinkering with both state-of-the-art and custom-built security tools.</p>
                     </div>
                 `;
                 break;
@@ -55,8 +55,8 @@ function loadSectionContent(sectionId, element) {
                 `<div class="experience-container">
                     <img src="images/fmi-logo.png" alt="Fiber Materials Inc" class="experience-image">
                     <p>
-                       <strong>Cyber Security Specialist, July 2025 - Present</strong><br>
-                       Built cybersecurity programs including vulnerability management, awareness training, and incident response. Sourced and deployed security solutions (EDR, SIEM, ITDR, MFA). Led NIST 800-171 gap analysis and compliance efforts.
+                       <strong>Cyber Security Specialist / ISSM, July 2025 &#x2013; Present</strong><br>
+                       ISSM for the organization, owning cybersecurity across classified and unclassified systems. Led the CMMC Level 2 effort from gap assessment through control implementation and C3PAO assessor engagement, aligned to NIST 800-171 and DFARS 252.204-7012/7021. Built, accredited, and maintain classified systems under DCSA and NIST 800-53 requirements. Sourced and deployed EDR, SIEM, ITDR, and MFA solutions; built vulnerability management and security awareness programs; report cybersecurity risk and compliance status directly to executive leadership.
                     </p>
                 </div>
                 <div class="experience-container">
@@ -73,14 +73,25 @@ function loadSectionContent(sectionId, element) {
             case 'projects':
                 element.innerHTML = `<ul class="project-list">
                     <li>
-                        <span class="project-title">CMMC 2.0 compliance</span>
+                        <span class="project-title">CMMC 2.0 Level 2 Program Build &#x2013; Gap Assessment to Assessor Engagement</span>
                         <div class="project-tags">
+                            <span class="project-tag">CMMC 2.0</span>
+                            <span class="project-tag">NIST 800-171</span>
                             <span class="project-tag">Governance, Risk, Compliance</span>
-                            <span class="project-tag">Manufacturing</span>
-                            <span class="project-tag">Project Management</span>
-                            <span class="project-tag">Cybersecurity Operations</span>
+                            <span class="project-tag">Defense Industrial Base</span>
+                            <span class="project-tag">Program Management</span>
                         </div>
-                        <p>Organization wide lead on compliance with Cybersecurity Maturity Model Certification (CMMC) including policies and procedures, technical implementation of NIST 800-171 R2 controls, evidence collection, executive reporting and advising, and staying up to date on all CMMC 2.0 news and timelines.</p> 
+                        <p>Organization-wide owner of CMMC 2.0 Level 2 readiness as ISSM, leading the effort from initial gap assessment through NIST 800-171 control implementation, policy and procedure development, evidence collection, executive reporting, and ongoing C3PAO assessor engagement. Manage relationships with third-party assessors and consultants while staying current on CMMC 2.0 rulemaking and DFARS 252.204-7012/7021 timelines.</p> 
+                    </li>
+                    <li>
+                        <span class="project-title">Classified System Accreditation &amp; ISSM Program Ownership</span>
+                        <div class="project-tags">
+                            <span class="project-tag">NIST 800-53</span>
+                            <span class="project-tag">DCSA</span>
+                            <span class="project-tag">RMF</span>
+                            <span class="project-tag">Classified Systems</span>
+                        </div>
+                        <p>Serving as ISSM, built and accredited classified systems under DCSA oversight and NIST 800-53 control requirements, and own their ongoing security management. Established the risk management processes, documentation, and continuous monitoring needed to maintain accreditation for a defense industrial base manufacturer.</p> 
                     </li>
                     <li>
                         <span class="project-title">Incident Response Playbook Development</span>
@@ -122,12 +133,12 @@ function loadSectionContent(sectionId, element) {
             case 'education':
                 element.innerHTML =
                 `<div class="education-container">
-                    <img src="images/associate-of-isc2.png" alt="Theo Brucker ISC2 Associate" class="education-image">
+                    <img src="images/cissp-logo.png" alt="Theo Brucker CISSP" class="education-image">
                     <img src="images/umaine-logo.jpg" alt="University of Maine logo" class="experience-image">
                     <img src="images/sec-logo.png" alt="CompTIA Security+ logo" class="experience-image">
                     <p>
-                        CMMC Certified Professional, March 2026<br>
-                        Associate CISSP, November 2024<br>
+                        CISSP, June 2026<br>
+                        CMMC Certified Professional (CCP), March 2026<br>
                         B.S. in Computer Science, University of Maine, 2024<br>
                         CompTIA Security+, 2023
                     </p>
