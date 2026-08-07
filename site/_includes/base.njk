@@ -7,6 +7,8 @@
   <title>{{ pageTitle or (title + " | " + site.title) }}</title>
   <meta name="description" content="{{ description or summary }}">
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="preload" href="/fonts/public-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/public-sans-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }} blog" href="{{ site.url }}/feed.xml">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -24,30 +26,34 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:image" content="{{ site.url }}/images/about-me.jpg">
   <meta name="twitter:card" content="summary_large_image">
-
-  {% block head %}{% endblock %}
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#experience">Experience</a></li>
-        <li><a href="/#projects">Projects</a></li>
-        <li><a href="/#education">Education</a></li>
-        <li><a href="/blog/">Blog</a></li>
-      </ul>
-    </nav>
+  <div class="marking-bar">Unclassified&nbsp;//&nbsp;Personal site&nbsp;//&nbsp;All views my own</div>
+
+  <header class="site-head">
+    <div class="shell">
+      <a class="wordmark" href="/">Theo Brucker<span class="creds">CISSP&nbsp;&middot;&nbsp;CCP</span></a>
+      <nav class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#experience">Experience</a></li>
+          <li><a href="/#projects">Projects</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="shell">
     {{ content | safe }}
   </main>
 
-  <footer>
-    <p class="disclaimer">{{ site.disclaimer }}</p>
-    <p>&copy; {{ site.buildYear }} {{ site.title }} | {{ site.tagline }} &middot;
-       <a href="/feed.xml">RSS</a></p>
+  <footer class="site-foot">
+    <div class="shell">
+      <p class="disclaimer">{{ site.disclaimer }}</p>
+      <p class="colophon">&copy; {{ site.buildYear }} {{ site.author.name }} &middot; <a href="/feed.xml">RSS</a> &middot; <a href="{{ site.author.github }}">GitHub</a> &middot; <a href="{{ site.author.linkedin }}">LinkedIn</a></p>
+    </div>
   </footer>
 </body>
 </html>

@@ -9,7 +9,7 @@ export default function (eleventyConfig) {
   // Static assets are copied through untouched.
   eleventyConfig.addPassthroughCopy("site/images");
   eleventyConfig.addPassthroughCopy("site/styles.css");
-  eleventyConfig.addPassthroughCopy("site/script.js");
+  eleventyConfig.addPassthroughCopy("site/fonts");
   eleventyConfig.addPassthroughCopy("site/robots.txt");
   eleventyConfig.addPassthroughCopy("site/feed.xsl");
   eleventyConfig.addPassthroughCopy("site/site.webmanifest");

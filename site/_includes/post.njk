@@ -23,6 +23,7 @@ layout: base.njk
 </script>
 
 <article class="post">
+  <p class="eyebrow">Blog</p>
   <h1>{{ title }}</h1>
   <p class="post-meta">
     <time datetime="{{ page.date | dateOnly }}">{{ page.date | readableDate }}</time>
@@ -31,7 +32,7 @@ layout: base.njk
   {% set visibleTags = tags | reject("equalto", "posts") %}
   {% if visibleTags | length %}
   <p class="post-tags">
-    {% for t in visibleTags %}<span class="project-tag">{{ t }}</span>{% endfor %}
+    {% for t in visibleTags %}<span class="tag">{{ t }}</span>{% endfor %}
   </p>
   {% endif %}
 
@@ -40,6 +41,5 @@ layout: base.njk
   </div>
 
   <hr>
-  <p class="disclaimer">{{ site.disclaimer }}</p>
   <p><a href="/blog/">&larr; All posts</a> &middot; <a href="/feed.xml">Subscribe via RSS</a></p>
 </article>
