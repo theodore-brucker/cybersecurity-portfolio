@@ -1,6 +1,6 @@
 export default {
   title: "Theo Brucker",
-  tagline: "CISSP, CCP",
+  tagline: "CISSP",
   url: "https://theobrucker.us",
   author: {
     name: "Theo Brucker",
@@ -12,6 +12,6 @@ export default {
   disclaimer:
     "The views and opinions expressed on this site are my own. They do not represent the views, positions, or opinions of any current or former employer, client, or affiliated organization. Nothing here is written on behalf of anyone but me, and no content is derived from confidential or client-specific information.",
   // Rendered in the footer, next to the disclaimer.
-  pledge: "Every post here is written by me without AI assistance.",
+  pledge: "Every blog post is written by me without AI assistance.",
   buildYear: new Date().getFullYear(),
 };
