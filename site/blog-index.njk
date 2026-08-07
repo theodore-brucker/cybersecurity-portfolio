@@ -1,0 +1,25 @@
+---
+layout: base.njk
+pageTitle: "Blog | Theo Brucker"
+description: "Weekly writing on defense industrial base cybersecurity, CMMC and NIST 800-171, security operations, detection engineering, and the tools I build."
+permalink: /blog/index.html
+eleventyExcludeFromCollections: true
+---
+
+<section id="blog">
+  <h1>Blog</h1>
+  <p>Weekly notes on defense industrial base security, compliance programs, detection work, and whatever I am building. <a href="/feed.xml">Subscribe via RSS</a>.</p>
+
+  <ul class="project-list">
+  {% for post in collections.posts %}
+    <li>
+      <span class="project-title"><a href="{{ post.url }}" class="project-link">{{ post.data.title }}</a></span>
+      <div class="project-tags">
+        {% for t in post.data.tags | reject("equalto", "posts") %}<span class="project-tag">{{ t }}</span>{% endfor %}
+      </div>
+      <p class="post-meta"><time datetime="{{ post.date | dateOnly }}">{{ post.date | readableDate }}</time></p>
+      <p>{{ post.data.summary }}</p>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
