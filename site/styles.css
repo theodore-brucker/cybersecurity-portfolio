@@ -572,6 +572,16 @@ footer.site-foot .shell {
     margin-bottom: 0.75rem;
 }
 
+.pledge {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--federal);
+    margin-bottom: 0.9rem;
+}
+
 .colophon {
     font-family: var(--font-mono);
     font-size: 0.72rem;
