@@ -11,6 +11,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("site/styles.css");
   eleventyConfig.addPassthroughCopy("site/script.js");
   eleventyConfig.addPassthroughCopy("site/robots.txt");
+  eleventyConfig.addPassthroughCopy("site/feed.xsl");
   eleventyConfig.addPassthroughCopy("site/site.webmanifest");
   eleventyConfig.addPassthroughCopy("site/*.png");
   eleventyConfig.addPassthroughCopy("site/*.ico");
@@ -19,6 +20,7 @@ export default function (eleventyConfig) {
 
   // Search Console verification file must stay at its exact path, not be templated.
   eleventyConfig.ignores.add("site/google*.html");
+  eleventyConfig.ignores.add("site/feed.xsl");
 
   // Only published posts, newest first.
   eleventyConfig.addCollection("posts", (api) =>
