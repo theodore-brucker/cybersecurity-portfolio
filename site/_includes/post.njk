@@ -1,0 +1,45 @@
+---
+layout: base.njk
+---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ title | dump | safe }},
+  "description": {{ summary | dump | safe }},
+  "datePublished": "{{ page.date | isoDate }}",
+  "dateModified": "{{ page.date | isoDate }}",
+  "url": "{{ site.url }}{{ page.url }}",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ site.url }}{{ page.url }}" },
+  "author": {
+    "@type": "Person",
+    "name": {{ site.author.name | dump | safe }},
+    "url": "{{ site.url }}",
+    "sameAs": [{{ site.author.linkedin | dump | safe }}, {{ site.author.github | dump | safe }}]
+  },
+  "publisher": { "@type": "Person", "name": {{ site.author.name | dump | safe }} },
+  "keywords": {{ (tags | reject("equalto", "posts") | join(", ")) | dump | safe }}
+}
+</script>
+
+<article class="post">
+  <h1>{{ title }}</h1>
+  <p class="post-meta">
+    <time datetime="{{ page.date | dateOnly }}">{{ page.date | readableDate }}</time>
+    {% if readingTime %} &middot; {{ readingTime }} min read{% endif %}
+  </p>
+  {% set visibleTags = tags | reject("equalto", "posts") %}
+  {% if visibleTags | length %}
+  <p class="post-tags">
+    {% for t in visibleTags %}<span class="project-tag">{{ t }}</span>{% endfor %}
+  </p>
+  {% endif %}
+
+  <div class="post-body">
+    {{ content | safe }}
+  </div>
+
+  <hr>
+  <p class="disclaimer">{{ site.disclaimer }}</p>
+  <p><a href="/blog/">&larr; All posts</a> &middot; <a href="/feed.xml">Subscribe via RSS</a></p>
+</article>

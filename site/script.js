@@ -1,5 +1,3 @@
-import blogPosts from './blogPosts.js';
-
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('nav a');
@@ -9,29 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Lazy loading for content sections
     // Updated order to match the new section order
-    const sections = ['intro', 'about', 'experience', 'projects', 'education', 'blog'];
+    const sections = ['intro', 'about', 'experience', 'projects', 'education'];
     sections.forEach(sectionId => {
         const sectionElement = document.getElementById(`${sectionId}-content`);
-        loadSectionContent(sectionId, sectionElement);
+        if (sectionElement) loadSectionContent(sectionId, sectionElement);
     });
 
-    // Blog post expansion
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('read-more')) {
-            const postId = parseInt(e.target.getAttribute('data-post-id'));
-            showFullPost(postId);
-        }
-    });
-
-    // Close full post
-    const closePostButton = document.getElementById('close-post');
-    closePostButton.addEventListener('click', closeFullPost);
 });
 
 function smoothScroll(e) {
+    const href = this.getAttribute('href');
+    // Only intercept same-page anchors. Real routes like /blog/ navigate normally.
+    if (!href || !href.startsWith('#')) return;
+    const targetElement = document.querySelector(href);
+    if (!targetElement) return;
     e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -46,16 +36,23 @@ function loadSectionContent(sectionId, element) {
                 element.innerHTML = `
                     <div class="about-container">
                         <img src="images/about-me.jpg" alt="Theo Brucker Portrait" class="about-image">
-                        <p>I'm a cybersecurity professional focused on the defense industrial base, currently serving as Cyber Security Specialist / ISSM at Fiber Materials Inc. (FMI) in Biddeford, ME. Over the past year I built FMI's cybersecurity program from the ground up: sourcing and deploying EDR, SIEM, and ITDR tooling, standing up vulnerability management and security awareness programs, and leading the organization's NIST 800-171/CMMC Level 2 effort from gap assessment through control implementation and ongoing C3PAO assessor engagement. I also own accreditation and ongoing management of classified systems under DCSA and NIST 800-53 requirements. In June 2026 I earned my CISSP, adding to my CMMC Certified Professional (CCP) credential from March 2026. Before FMI, I spent time as a SOC analyst at an MSSP, handling incident response across roughly 100 client environments and building out detection and automation tooling. In my free time I enjoy tinkering with both state-of-the-art and custom-built security tools.</p>
+                        <p>I'm a cybersecurity professional focused on the defense industrial base. Since July 2026 I have been a Staff Consultant on the CMMC practice at A-LIGN, where I run readiness assessments and CMMC Level 2 assessments against NIST 800-171. I came to that work from the other side of the table. As ISSM at Fiber Materials Inc. I built a manufacturer's cybersecurity program from nothing: sourcing and deploying EDR, SIEM, ITDR, and MFA, standing up vulnerability management and security awareness, accrediting classified systems under DCSA and NIST 800-53, and carrying a CMMC Level 2 effort from gap assessment through control implementation and C3PAO engagement. Before that I spent three years as a SOC analyst at an MSSP, handling incident response across roughly 100 client environments and building detection and automation tooling. Having implemented 800-171 under a deadline before I ever assessed against it shapes how I read a control, and what I think separates a program that passes from one that actually works. I hold the CISSP and the CMMC Certified Professional credential. In my free time I build and break security tools.</p>
                     </div>
                 `;
                 break;
             case 'experience':
                 element.innerHTML = 
                 `<div class="experience-container">
+                    <img src="images/align-logo.png" alt="A-LIGN logo" class="experience-image">
+                    <p>
+                       <strong>Staff Consultant, CMMC, July 2026 &#x2013; Present</strong><br>
+                       Deliver CMMC readiness assessments and CMMC Level 2 assessments for defense industrial base clients, evaluating implementation of NIST 800-171 controls against DFARS 252.204-7012/7021 obligations. Assess scoping and enclave boundaries, evidence quality, and control implementation, and advise organizations on closing gaps ahead of a formal assessment.
+                    </p>
+                </div>
+                <div class="experience-container">
                     <img src="images/fmi-logo.png" alt="Fiber Materials Inc" class="experience-image">
                     <p>
-                       <strong>Cyber Security Specialist / ISSM, July 2025 &#x2013; Present</strong><br>
+                       <strong>Cyber Security Specialist / ISSM, July 2025 &#x2013; July 2026</strong><br>
                        ISSM for the organization, owning cybersecurity across classified and unclassified systems. Led the CMMC Level 2 effort from gap assessment through control implementation and C3PAO assessor engagement, aligned to NIST 800-171 and DFARS 252.204-7012/7021. Built, accredited, and maintain classified systems under DCSA and NIST 800-53 requirements. Sourced and deployed EDR, SIEM, ITDR, and MFA solutions; built vulnerability management and security awareness programs; report cybersecurity risk and compliance status directly to executive leadership.
                     </p>
                 </div>
@@ -144,39 +141,7 @@ function loadSectionContent(sectionId, element) {
                     </p>
                 </div>`
                 break;
-            case 'blog':
-                loadBlogPosts(element);
-                break;
         }
         element.classList.add('fade-in');
     }, 500);
-}
-
-function loadBlogPosts(element) {
-    const blogHTML = blogPosts.map(post => `
-        <article>
-            <h3>${post.title}</h3>
-            <p>${post.preview}</p>
-            <button class="read-more" data-post-id="${post.id}">Read More</button>
-            <br></br>
-        </article>
-    `).join('');
-
-    element.innerHTML = blogHTML;
-}
-
-function showFullPost(postId) {
-    const fullPostElement = document.getElementById('full-post');
-    const fullPostContent = document.getElementById('full-post-content');
-    
-    const post = blogPosts.find(p => p.id === postId);
-    if (post) {
-        fullPostContent.innerHTML = post.content;
-        fullPostElement.classList.remove('hidden');
-    }
-}
-
-function closeFullPost() {
-    const fullPostElement = document.getElementById('full-post');
-    fullPostElement.classList.add('hidden');
 }

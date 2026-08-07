@@ -1,16 +1,20 @@
+---
+permalink: /index.html
+eleventyExcludeFromCollections: true
+---
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+        <link rel="alternate" type="application/atom+xml" title="Theo Brucker blog" href="https://theobrucker.us/feed.xml">
         <link rel="canonical" href="https://theobrucker.us/" />
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Theo Brucker | CISSP, ISSM, CCP | Cybersecurity Program Manager</title>
-        <meta name="description" content="Theo Brucker: ISSM and CMMC program lead specializing in defense industrial base cybersecurity, NIST 800-171/800-53 compliance, classified system accreditation, and incident response. CISSP, ISSM, CCP with hands-on program ownership.">
+        <title>Theo Brucker | CISSP, CCP | CMMC Consultant &amp; Assessor</title>
+        <meta name="description" content="Theo Brucker: CMMC consultant and assessor specializing in CMMC Level 2 assessments, readiness assessments, and NIST 800-171 for the defense industrial base. CISSP and CMMC Certified Professional, with prior ISSM program ownership and classified system accreditation.">
         <meta name="keywords" content="CISSP, ISSM, CMMC, CMMC CCP, CCP, CMMC Certified Professional, CMMC 2.0, CMMC Level 2, CMMC Consultant, CMMC Assessor, NIST 800-171, NIST 800-53, DFARS 252.204-7012, DFARS 252.204-7021, DCSA, RMF, Defense Industrial Base, DIB, C3PAO, Classified System Accreditation, Information System Security Manager, Cybersecurity Program Management, Governance Risk Compliance, GRC, Cybersecurity Advising, Cybersecurity Consulting, Security+, Azure, MDR, CISSP exam, detection, systems engineering, SOC, triage, playbook, network, logging, cloud, security analyst, security operations, incident handling, threat detection, cloud security, security automation, honeynet, NIDS">
         <link rel="stylesheet" href="styles.css">
-        <script src="blogPosts.js" type="module"></script>
         <script src="script.js" type="module"></script>
 
         <!-- Favicon -->
@@ -21,8 +25,8 @@
         <link rel="manifest" href="/site.webmanifest">
 
         <!-- Open Graph Tags -->
-        <meta property="og:title" content="Theo Brucker - ISSM & CMMC Program Lead | CISSP | ISSM | CCP">
-        <meta property="og:description" content="Theo Brucker: ISSM and CMMC program lead specializing in defense industrial base cybersecurity, NIST 800-171/800-53 compliance, classified system accreditation, and incident response. CISSP, ISSM, CCP with hands-on program ownership.">
+        <meta property="og:title" content="Theo Brucker - CMMC Consultant &amp; Assessor | CISSP | CCP">
+        <meta property="og:description" content="Theo Brucker: CMMC consultant and assessor specializing in CMMC Level 2 assessments, readiness assessments, and NIST 800-171 for the defense industrial base. CISSP and CMMC Certified Professional, with prior ISSM program ownership and classified system accreditation.">
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://theobrucker.us">
         <meta property="og:image" content="https://theobrucker.us/profile-image.jpg">
@@ -33,20 +37,18 @@
           "@context": "https://schema.org",
           "@type": "Person",
           "name": "Theo Brucker",
-          "jobTitle": "Cyber Security Specialist / ISSM",
+          "jobTitle": "CMMC Consultant and Assessor",
           "url": "https://theobrucker.us",
           "sameAs": [
             "https://www.linkedin.com/in/theobrucker/",
             "https://github.com/theodore-brucker",
             "mailto:bruckertheodore@gmail.com"
           ],
-          "worksFor": {
-            "@type": "Organization",
-            "name": "FMI"
-          },
-          "description": "Theo Brucker: ISSM and CMMC program lead specializing in defense industrial base cybersecurity, NIST 800-171/800-53 compliance, classified system accreditation, and incident response. CISSP, ISSM, and CCP with hands-on program ownership.",
+          "description": "Theo Brucker: CMMC consultant and assessor specializing in CMMC Level 2 assessments, readiness assessments, and NIST 800-171 for the defense industrial base. CISSP and CMMC Certified Professional, with prior ISSM program ownership and classified system accreditation.",
           "image": "https://theobrucker.us/profile-image.jpg",
           "knowsAbout": [
+            "CMMC Level 2 Assessment",
+            "CMMC Readiness Assessment",
             "CMMC 2.0 Program Management",
             "NIST 800-171",
             "NIST 800-53",
@@ -102,14 +104,14 @@
                 <li><a href="#experience"><span class="cybersecurity-icon"></span>Experience</a></li>
                 <li><a href="#projects"><span class="cybersecurity-icon"></span>Projects</a></li>
                 <li><a href="#education"><span class="cybersecurity-icon"></span>Education</a></li>
-                <li><a href="#blog"><span class="cybersecurity-icon"></span>Blog</a></li>
+                <li><a href="/blog/"><span class="cybersecurity-icon"></span>Blog</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section id="intro">
-            <h1>Theo Brucker | CISSP, ISSM, CCP</h1>
+            <h1>Theo Brucker | CISSP, CCP</h1>
             <div id="intro-content"></div>
             <a href="#contact" class="cta-button">Get in Touch</a>
         </section>
@@ -136,7 +138,19 @@
 
         <section id="blog">
             <h2>Articles</h2>
-            <div id="blog-content"></div>
+            <ul class="project-list">
+            {% for post in collections.posts | slice5 %}
+                <li>
+                    <span class="project-title"><a href="{{ post.url }}" class="project-link">{{ post.data.title }}</a></span>
+                    <div class="project-tags">
+                        {% for t in post.data.tags | reject("equalto", "posts") %}<span class="project-tag">{{ t }}</span>{% endfor %}
+                    </div>
+                    <p class="post-meta"><time datetime="{{ post.date | dateOnly }}">{{ post.date | readableDate }}</time></p>
+                    <p>{{ post.data.summary }}</p>
+                </li>
+            {% endfor %}
+            </ul>
+            <p><a href="/blog/" class="cta-button">All posts</a> &middot; <a href="/feed.xml">RSS</a></p>
         </section>
 
         <section id="contact">
@@ -150,12 +164,9 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Theo Brucker | CISSP, ISSM, CCP</p>
+        <p class="disclaimer">{{ site.disclaimer }}</p>
+        <p>&copy; {{ site.buildYear }} Theo Brucker | CISSP, CCP &middot; <a href="/feed.xml">RSS</a></p>
     </footer>
 
-    <div id="full-post" class="hidden">
-        <div id="full-post-content"></div>
-        <button id="close-post">Close</button>
-    </div>
 </body>
 </html>
