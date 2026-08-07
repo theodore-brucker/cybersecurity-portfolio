@@ -15,38 +15,37 @@
         <meta name="robots" content="noindex"/>
         <style>
           :root {
-            --background-color: #2A2420;
-            --text-color: #E6D5B8;
-            --accent-color: #E59560;
-            --secondary-accent: #A45C40;
-            --highlight-color: #F2A65A;
+            --paper: #F5F7F6;
+            --ink: #0D1B26;
+            --slate: #5C6B70;
+            --line: #D3DBD8;
+            --fill: #EBEFED;
+            --federal: #1A4B8C;
           }
           *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
           body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
+            font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.65;
+            color: var(--ink);
+            background-color: var(--paper);
             max-width: 760px;
             margin: 0 auto;
             padding: 2rem 1.25rem 3rem;
             font-size: clamp(14px, 4vw, 16px);
           }
           h1 {
-            color: var(--accent-color);
             font-size: clamp(1.5rem, 6vw, 2.2rem);
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
           }
-          h2 { color: var(--accent-color); font-size: 1.15rem; margin-bottom: 0.35rem; }
-          h2 a { color: var(--highlight-color); text-decoration: none; }
-          h2 a:hover { color: var(--accent-color); text-decoration: underline; }
-          a { color: var(--highlight-color); }
+          h2 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+          h2 a { color: var(--ink); text-decoration: none; }
+          h2 a:hover { color: var(--federal); text-decoration: underline; }
+          a { color: var(--federal); }
           .banner {
-            background-color: rgba(164, 92, 64, 0.18);
-            border-left: 4px solid var(--accent-color);
-            border-radius: 0 8px 8px 0;
+            background-color: var(--fill);
+            border-left: 3px solid var(--federal);
             padding: 1rem 1.2rem;
             margin: 1.5rem 0 2rem;
           }
@@ -54,28 +53,33 @@
           .banner p:last-child { margin-bottom: 0; }
           .url {
             display: block;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #1A1614;
-            color: var(--accent-color);
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            background-color: var(--ink);
+            color: var(--paper);
             padding: 0.7rem 0.9rem;
-            border-radius: 5px;
             overflow-x: auto;
             white-space: nowrap;
             margin-top: 0.5rem;
+            font-size: 0.85rem;
           }
-          .subtitle { margin-bottom: 0.5rem; }
+          .subtitle { color: var(--slate); margin-bottom: 0.5rem; }
           article {
-            border-top: 1px solid var(--secondary-accent);
-            padding-top: 1.5rem;
-            margin-top: 1.5rem;
+            border-top: 1px solid var(--line);
+            padding-top: 1.25rem;
+            margin-top: 1.25rem;
           }
-          .meta { color: var(--secondary-accent); font-size: 0.85rem; margin-bottom: 0.6rem; }
+          .meta {
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            color: var(--slate);
+            font-size: 0.78rem;
+            margin-bottom: 0.5rem;
+          }
           footer {
-            border-top: 1px solid var(--secondary-accent);
+            border-top: 1px solid var(--line);
             margin-top: 2.5rem;
             padding-top: 1.25rem;
             font-size: 0.8rem;
-            opacity: 0.7;
+            color: var(--slate);
           }
           footer p { margin-bottom: 0.75rem; }
         </style>
