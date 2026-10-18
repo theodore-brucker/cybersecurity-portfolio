@@ -1,0 +1,33 @@
+name: Post body guard
+
+# Blog posts are written by hand. This check fails a pull request that changes
+# anything below the front matter of a post in site/blog/. Label a pull request
+# "post-body-edit" when the change is your own writing and the check will skip.
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: Blog post bodies unchanged
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'post-body-edit') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Compare post bodies with the base branch
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/check-post-bodies.mjs "$BASE_SHA" "$HEAD_SHA"
