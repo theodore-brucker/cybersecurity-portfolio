@@ -2,6 +2,7 @@
 title: "Continuing my path in cyber"
 date: 2026-08-07
 summary: "A follow up to my 2024 article about my career. Reflecting on the past couple of years and my next steps"
+description: "Theo Brucker looks back on what changed after his first career post, including earning the CISSP and changing jobs, and on seeking mentorship with a GRC focus."
 tags: ["Professional development","CISSP","Cybersecurity Leadership"]
 readingTime: 2
 draft: false

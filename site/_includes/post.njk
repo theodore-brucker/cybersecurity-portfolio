@@ -1,29 +1,8 @@
 ---
 layout: base.njk
 ---
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": {{ title | dump | safe }},
-  "description": {{ summary | dump | safe }},
-  "datePublished": "{{ page.date | isoDate }}",
-  "dateModified": "{{ page.date | isoDate }}",
-  "url": "{{ site.url }}{{ page.url }}",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ site.url }}{{ page.url }}" },
-  "author": {
-    "@type": "Person",
-    "name": {{ site.author.name | dump | safe }},
-    "url": "{{ site.url }}",
-    "sameAs": [{{ site.author.linkedin | dump | safe }}, {{ site.author.github | dump | safe }}]
-  },
-  "publisher": { "@type": "Person", "name": {{ site.author.name | dump | safe }} },
-  "keywords": {{ (tags | reject("equalto", "posts") | join(", ")) | dump | safe }}
-}
-</script>
-
 <article class="post">
-  <p class="eyebrow">Blog</p>
+  {% include "breadcrumb.njk" %}
   <h1>{{ title }}</h1>
   <p class="post-meta">
     <time datetime="{{ page.date | dateOnly }}">{{ page.date | readableDate }}</time>

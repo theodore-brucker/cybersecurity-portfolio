@@ -2,6 +2,7 @@
 title: "Discovering my path in cyber"
 date: 2024-12-20
 summary: "Now that I've broken into the field of cybersecurity, what next?"
+description: "Theo Brucker reflects on how he started in cybersecurity through an internship and a SOC technician role, and on the career advice shaping his next steps."
 tags: ["Career"]
 readingTime: 3
 ---
