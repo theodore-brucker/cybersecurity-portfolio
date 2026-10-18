@@ -2,6 +2,7 @@
 title: "How I Passed the CISSP"
 date: 2024-12-21
 summary: "For those wondering what I did to pass the exam on my first try."
+description: "Theo Brucker explains how he prepared for and passed the CISSP exam on his first attempt in November 2024, including the study materials and schedule he used."
 tags: ["CISSP", "Certifications"]
 readingTime: 5
 ---

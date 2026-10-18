@@ -1,0 +1,15 @@
+{#- Visible breadcrumb trail from the `breadcrumb` front matter list. The same
+    list feeds the BreadcrumbList in structured data, so the two always match. -#}
+{%- if breadcrumb and breadcrumb.length %}
+<nav class="eyebrow breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    {%- for crumb in breadcrumb %}
+    {%- if crumb.url == page.url %}
+    <li aria-current="page">{{ crumb.name }}</li>
+    {%- else %}
+    <li><a href="{{ crumb.url }}">{{ crumb.name }}</a></li>
+    {%- endif %}
+    {%- endfor %}
+  </ol>
+</nav>
+{%- endif %}

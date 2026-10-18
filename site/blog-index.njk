@@ -1,13 +1,20 @@
 ---
 layout: base.njk
-pageTitle: "Blog"
-description: "Weekly writing on building and assessing security programs, CMMC and NIST 800-171, security operations, detection engineering, and the tools I build."
+pageTitle: "Cybersecurity Blog | Theo Brucker"
+ogTitle: "Cybersecurity Blog"
+description: "Theo Brucker's blog on building and assessing security programs, CMMC and NIST SP 800-171, security operations, detection engineering, and the tools he builds."
 permalink: /blog/index.html
 listsPosts: true
+schemaType: Blog
+breadcrumb:
+  - name: Home
+    url: /
+  - name: Blog
+    url: /blog/
 ---
 
 <section id="blog-archive">
-  <p class="eyebrow">Blog</p>
+  {% include "breadcrumb.njk" %}
   <h1>All posts</h1>
   <p class="lede">Weekly notes on building and assessing security programs, compliance, detection work, and whatever I am building.</p>
 

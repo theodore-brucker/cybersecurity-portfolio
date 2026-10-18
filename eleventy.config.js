@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 import rssPlugin from "@11ty/eleventy-plugin-rss";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import { buildGraph, serializeGraph } from "./lib/structured-data.js";
 
 // Front matter dates arrive as Date objects (unquoted YAML) or strings (quoted).
 const toDate = (value) => {
@@ -86,6 +87,14 @@ export default function (eleventyConfig) {
   );
 
   eleventyConfig.addFilter("postModified", postModified);
+
+  // The later of a page's date and its optional `updated` front matter value.
+  eleventyConfig.addFilter("modifiedDate", (date, updated) => latest([date, toDate(updated)]));
+
+  // One JSON-LD @graph per page; see lib/structured-data.js.
+  eleventyConfig.addFilter("structuredData", (data, site, collections) =>
+    serializeGraph(buildGraph(data, site, collections))
+  );
 
   // Last substantive change for a sitemap entry. Posts use `updated` or their
   // date. Other pages use their own `updated` field and, when they list posts,

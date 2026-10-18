@@ -7,7 +7,8 @@
     "dev": "eleventy --serve",
     "build": "eleventy",
     "new": "node scripts/new-post.js",
-    "indexnow:all": "node scripts/indexnow-submit.mjs"
+    "indexnow:all": "node scripts/indexnow-submit.mjs",
+    "validate:jsonld": "node scripts/validate-jsonld.mjs _site"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

@@ -15,15 +15,18 @@ site/
     blog.11tydata.js      shared front matter for all posts
     *.md                  one file per post
   _includes/
-    base.njk              shell: head, nav, footer, disclaimer
-    post.njk              post layout + BlogPosting structured data
+    base.njk              shell: head tags, JSON-LD, nav, footer, disclaimer
+    post.njk              post layout
+    breadcrumb.njk        visible breadcrumb trail (matches the JSON-LD)
   _data/site.js           site metadata, disclaimer, crawler and verification settings
   feed.njk                -> /feed.xml (Atom)
   sitemap.njk             -> /sitemap.xml (every indexable page)
   robots.njk              -> /robots.txt
   <key>.txt               IndexNow key file (public by design)
+lib/structured-data.js    builds the JSON-LD @graph for every page
 netlify/plugins/indexnow  submits changed URLs to IndexNow after production deploys
 scripts/new-post.js       post scaffolder
+scripts/validate-jsonld.mjs  checks the built JSON-LD (runs in CI)
 docs/seo/                 audit, Cloudflare checklist, and other SEO notes
 ```
 
@@ -51,7 +54,8 @@ to publish.
 title: "Post Title"
 date: 2026-08-06
 updated: 2026-09-01   # optional: last substantive revision, used for lastmod
-summary: "Shown in search results, the RSS feed, and the LinkedIn preview card."
+summary: "Shown in post lists, the RSS feed, and the LinkedIn preview card."
+description: "Optional. One plain sentence for search snippets that says what the post covers and that you wrote it. Falls back to summary."
 tags: ["CMMC", "NIST 800-171"]
 readingTime: 6
 draft: true
@@ -72,6 +76,21 @@ draft: true
 - **Verification tags**: paste the content values for Google Search Console or
   Bing Webmaster Tools into `verification` in `site/_data/site.js`. Empty
   values render nothing. Google is already verified by the HTML file in `site/`.
+
+### Structured data
+
+Every indexable page gets one JSON-LD `@graph` from `lib/structured-data.js`,
+built from `site/_data/site.js` and the page's front matter. Stable ids tie it
+together: `https://theobrucker.us/#person`, `#website`, and per-page
+`<url>#webpage`, `#article`, and `#breadcrumb`. The full Person node (job,
+employer, education, credentials, topics) appears only on the homepage, where
+that information is visible; other pages reference the same id. Structured data
+may only describe what a visitor can see, so when you change the homepage
+experience or certifications, update `author` in `site/_data/site.js` to match.
+
+`npm run build && npm run validate:jsonld` checks the output; CI runs the same
+check and fails on parse errors, missing required properties, unresolved `@id`
+references, and values that are not visible on the page.
 
 ### IndexNow
 
@@ -102,4 +121,5 @@ npm run dev          # local server with hot reload
 npm run build        # production build into _site/
 npm run new          # scaffold a post
 npm run indexnow:all # submit every sitemap URL to IndexNow
+npm run validate:jsonld # check structured data in _site/
 ```

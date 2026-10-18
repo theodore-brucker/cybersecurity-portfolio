@@ -53,3 +53,6 @@ jobs:
 
       - name: Verify feed and sitemap exist
         run: test -s _site/feed.xml && test -s _site/sitemap.xml
+
+      - name: Validate JSON-LD
+        run: node scripts/validate-jsonld.mjs _site
