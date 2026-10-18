@@ -2,6 +2,7 @@
 layout: base.njk
 ---
 {%- set modified = page.date | modifiedDate(updated) %}
+{%- set visibleTags = tags | reject("equalto", "posts") %}
 <article class="post">
   <header class="post-header">
     {% include "breadcrumb.njk" %}
@@ -14,7 +15,6 @@ layout: base.njk
       {%- endif %}
       {%- if readingTime %} &middot; {{ readingTime }} min read{% endif %}
     </p>
-    {%- set visibleTags = tags | reject("equalto", "posts") %}
     {%- if visibleTags | length %}
     <p class="post-tags">
       {% for t in visibleTags %}<span class="tag">{{ t }}</span>{% endfor %}
@@ -27,10 +27,66 @@ layout: base.njk
     <img src="{{ image }}" alt="{{ imageAlt }}"{% if imageWidth %} width="{{ imageWidth }}" height="{{ imageHeight }}"{% endif %}>
   </figure>
   {%- endif %}
+  {%- if bluf %}
+
+  {#- Answer-first box from the optional `bluf` front matter field. #}
+  <section class="post-bluf" aria-label="Bottom line">
+    <p class="post-bluf-label">Bottom line</p>
+    <p>{{ bluf }}</p>
+  </section>
+  {%- endif %}
 
   <div class="post-body">
     {{ content | safe }}
   </div>
+  {%- if faq and faq.length %}
+
+  {#- Visible questions and answers from the optional `faq` field; the same
+      items become FAQPage structured data. #}
+  <section class="post-section post-faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Frequently asked questions</h2>
+    {%- for item in faq %}
+    {%- if item.q and item.a %}
+    <h3>{{ item.q }}</h3>
+    {{ item.a | markdown | safe }}
+    {%- endif %}
+    {%- endfor %}
+  </section>
+  {%- endif %}
+  {%- if sources and sources.length %}
+
+  {#- References from the optional `sources` field; also BlogPosting.citation. #}
+  <section class="post-section post-sources" aria-labelledby="sources-heading">
+    <h2 id="sources-heading">Sources</h2>
+    <ol>
+      {%- for source in sources %}
+      <li>{% if source.url %}<a href="{{ source.url }}">{{ source.title }}</a>{% else %}{{ source.title }}{% endif %}{% if source.publisher %}, {{ source.publisher }}{% endif %}{% if source.date %} ({{ source.date }}){% endif %}</li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endif %}
+  {%- set related = collections.posts | relatedPosts(page.url, tags) %}
+  {%- set topicHubs = collections.topics | topicsForTags(tags) %}
+  {%- if related.length or topicHubs.length %}
+
+  <section class="post-section post-related" aria-labelledby="related-heading">
+    <h2 id="related-heading">Related posts</h2>
+    {%- if related.length %}
+    <ul class="post-list">
+      {%- for post in related %}
+      <li>
+        <span class="post-date"><time datetime="{{ post.date | dateOnly }}">{{ post.date | readableDate }}</time></span>
+        <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+        <p>{{ post.data.summary }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- for hub in topicHubs %}
+    <p class="topic-link">More on this topic: <a href="{{ hub.url }}">{{ hub.data.title }}</a></p>
+    {%- endfor %}
+  </section>
+  {%- endif %}
 
   <footer class="post-footer">
     <hr>

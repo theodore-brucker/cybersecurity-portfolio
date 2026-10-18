@@ -579,10 +579,62 @@ strong { font-weight: 600; }
     border: 1px solid var(--line);
 }
 
-.post-body h2 {
+.post-body h2,
+.post-section > h2 {
     margin-top: 2.25rem;
     padding-top: 1.25rem;
     border-top: 1px solid var(--line);
+}
+
+/* Answer-first box from the `bluf` front matter field. */
+.post-bluf {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--federal);
+    padding: 1rem 1.15rem;
+    margin: 0 0 1.75rem;
+    max-width: var(--measure);
+}
+
+.post-bluf p:last-child { margin-bottom: 0; }
+
+.post-bluf-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 0.4rem;
+}
+
+/* FAQ, Sources, and Related posts after the post body. */
+.post-section { padding: 0; }
+
+.post-faq h3 { margin-top: 1.25rem; }
+
+.post-sources ol {
+    margin: 0 0 1rem 1.4rem;
+    max-width: var(--measure);
+}
+
+.post-sources li { margin-bottom: 0.4rem; }
+
+.topic-link { margin-top: 1rem; }
+
+/* Topic hubs */
+.topic { padding-top: 2.5rem; }
+
+.topic-intro { margin-bottom: 2rem; }
+
+.draft-note,
+.todo-placeholder {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--signal);
+    border: 1px dashed var(--signal);
+    padding: 0.6rem 0.8rem;
+    max-width: var(--measure);
 }
 
 .post-body ul, .post-body ol {

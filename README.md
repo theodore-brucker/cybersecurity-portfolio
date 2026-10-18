@@ -18,6 +18,10 @@ site/
     base.njk              shell: head tags, JSON-LD, nav, footer, disclaimer
     post.njk              post layout
     breadcrumb.njk        visible breadcrumb trail (matches the JSON-LD)
+    topic.njk             topic hub layout
+  topics/
+    topics.11tydata.js    hub defaults (draft hubs skip production builds)
+    cmmc.njk              /cmmc/ hub (draft until the intro is written)
   _data/site.js           site metadata, disclaimer, crawler and verification settings
   feed.njk                -> /feed.xml (Atom)
   sitemap.njk             -> /sitemap.xml (every indexable page)
@@ -27,6 +31,7 @@ site/
   llms.njk, llms-full.njk -> /llms.txt, /llms-full.txt
   <key>.txt               IndexNow key file (public by design)
 lib/structured-data.js    builds the JSON-LD @graph for every page
+lib/posts.js              date and tag helpers (related posts, topic matching)
 netlify/plugins/indexnow  submits changed URLs to IndexNow after production deploys
 scripts/new-post.js       post scaffolder
 scripts/validate-jsonld.mjs  checks the built JSON-LD (runs in CI)
@@ -71,6 +76,44 @@ draft: true
 ```
 
 Posts show "Published" with `date`, and "Last updated" when `updated` is later.
+
+### Optional fields for citable posts
+
+AI search engines quote passages that answer a question directly, cite primary
+sources, and come from first-hand experience. These optional fields support
+that without touching the post body. Each renders only when present.
+
+```yaml
+bluf: "Two or three sentences that answer the post's question up front."
+faq:
+  - q: "What can go on a POA&M for CMMC Level 2?"
+    a: "A short, direct answer. Markdown links work."
+sources:
+  - title: "32 CFR Part 170, CMMC Program"
+    url: "https://www.ecfr.gov/current/title-32/subtitle-A/chapter-I/subchapter-G/part-170"
+    publisher: "eCFR"
+    date: "2024"
+```
+
+- `bluf` shows as a "Bottom line" box above the body. (`summary` was already
+  the teaser for lists, the feed, and LinkedIn, so the answer box has its own
+  field.)
+- `faq` renders as a visible "Frequently asked questions" section at the end
+  and adds matching FAQPage structured data. Use it only for real questions the
+  post answers.
+- `sources` renders as a numbered "Sources" list and becomes
+  `BlogPosting.citation`.
+- Posts that share a tag link to each other under "Related posts".
+
+### Topic hubs
+
+`site/topics/*.njk` pages list every published post carrying any of their
+`topicTags`, newest first, under an intro you write in the file body. The CMMC
+hub lives at `/cmmc/` once published. A hub with `draft: true` is built for
+local and deploy-preview builds (with a visible draft banner) but never in
+production, and stays noindex and out of the sitemap. Publish it by writing the
+intro, replacing the TODO placeholder, and setting `draft: false` after at
+least one post carries its tags. Published hubs are linked from matching posts.
 
 ## Search engines and AI crawlers
 

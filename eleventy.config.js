@@ -2,37 +2,28 @@ import { DateTime } from "luxon";
 import rssPlugin from "@11ty/eleventy-plugin-rss";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import { buildGraph, serializeGraph } from "./lib/structured-data.js";
-
-// Front matter dates arrive as Date objects (unquoted YAML) or strings (quoted).
-const toDate = (value) => {
-  if (!value) return null;
-  if (value instanceof Date) return value;
-  const parsed = DateTime.fromISO(String(value), { zone: "utc" });
-  return parsed.isValid ? parsed.toJSDate() : null;
-};
-
-const latest = (dates) =>
-  dates.filter(Boolean).reduce((newest, d) => (!newest || d > newest ? d : newest), null);
+import { toDate, latest, postModified, postsWithTags, relatedPosts } from "./lib/posts.js";
 
 const isPost = (item) => (item.data.tags || []).includes("posts");
-
-// A post's last substantive revision: `updated` when set, otherwise its publish date.
-const postModified = (post) => latest([post.date, toDate(post.data.updated)]);
 
 // Pages that list posts set `listsPosts: true` (every post) or a list of tags.
 const postsListedOn = (item, posts) => {
   const listed = item.data.listsPosts;
   if (listed === true) return posts;
-  if (!Array.isArray(listed)) return [];
-  const wanted = listed.map((t) => String(t).toLowerCase());
-  return posts.filter((p) =>
-    (p.data.tags || []).some((t) => wanted.includes(String(t).toLowerCase()))
-  );
+  return Array.isArray(listed) ? postsWithTags(posts, listed) : [];
 };
 
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(rssPlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
+
+  // The same markdown-it instance Eleventy uses for posts, so front matter
+  // fields such as FAQ answers render exactly like post bodies.
+  let markdownLibrary;
+  eleventyConfig.amendLibrary("md", (md) => {
+    markdownLibrary = md;
+  });
+  const renderMarkdown = (text) => (markdownLibrary ? markdownLibrary.render(String(text ?? "")) : "");
 
   // Static assets are copied through untouched.
   eleventyConfig.addPassthroughCopy("site/images");
@@ -57,6 +48,12 @@ export default function (eleventyConfig) {
       .getFilteredByGlob("site/blog/*.md")
       .filter((p) => !p.data.draft)
       .sort((a, b) => b.date - a.date)
+  );
+
+  // Topic hubs (site/topics/) that have output in this build. Draft hubs are
+  // built for local and deploy-preview builds only.
+  eleventyConfig.addCollection("topics", (api) =>
+    api.getFilteredByGlob("site/topics/*.njk").filter((t) => t.url)
   );
 
   // Every canonical, indexable HTML page. Drafts have no output path, and pages
@@ -99,9 +96,20 @@ export default function (eleventyConfig) {
     String(text || "").replace(/<!--[\s\S]*?-->\s*/g, "")
   );
 
-  // One JSON-LD @graph per page; see lib/structured-data.js.
-  eleventyConfig.addFilter("structuredData", (data, site, collections) =>
-    serializeGraph(buildGraph(data, site, collections))
+  // Markdown from front matter (FAQ answers), rendered like a post body.
+  eleventyConfig.addFilter("markdown", renderMarkdown);
+
+  // Posts tagged with any of the given tags, newest first (topic hubs).
+  eleventyConfig.addFilter("postsWithTags", (posts, tags) => postsWithTags(posts, tags));
+
+  // Up to three other posts that share a tag with the current one.
+  eleventyConfig.addFilter("relatedPosts", (posts, url, tags) => relatedPosts({ url, tags }, posts));
+
+  // Published topic hubs whose tags overlap the given post tags.
+  eleventyConfig.addFilter("topicsForTags", (topics, tags) =>
+    (topics || []).filter(
+      (t) => !t.data.draft && postsWithTags([{ data: { tags } }], t.data.topicTags).length
+    )
   );
 
   // Last substantive change for a sitemap entry. Posts use `updated` or their
@@ -112,6 +120,11 @@ export default function (eleventyConfig) {
     const listed = postsListedOn(item, posts).map((p) => p.date);
     return latest([toDate(item.data.updated), ...listed]);
   });
+
+  // One JSON-LD @graph per page; see lib/structured-data.js.
+  eleventyConfig.addFilter("structuredData", (data, site, collections) =>
+    serializeGraph(buildGraph(data, site, collections, { renderMarkdown }))
+  );
 
   return {
     dir: {

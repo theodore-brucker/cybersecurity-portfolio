@@ -30,6 +30,17 @@ summary: "One or two sentences. This is the LinkedIn preview and the Google resu
 tags: ["CMMC"]
 readingTime: 4
 draft: true
+# Optional fields. Uncomment the ones you use; each renders on the page only when set.
+# description: "One plain sentence for search snippets: what the post covers, and that you wrote it."
+# updated: ${date}   # last substantive revision; shows as "Last updated"
+# bluf: "Two or three sentences that answer the post's question up front. Shown in a box above the body."
+# faq:
+#   - q: "A question readers actually ask?"
+#     a: "A short, direct answer. Markdown links work."
+# sources:
+#   - title: "32 CFR Part 170, CMMC Program"
+#     url: "https://www.ecfr.gov/current/title-32/subtitle-A/chapter-I/subchapter-G/part-170"
+#     publisher: "eCFR"
 ---
 
 Open with the claim, not the setup. State the opinion in the first two sentences.

@@ -73,7 +73,11 @@
     schemaType: schemaType,
     wordCount: wordCount,
     image: image,
-    imageAlt: imageAlt
+    imageAlt: imageAlt,
+    faq: faq,
+    sources: sources,
+    topicTags: topicTags,
+    topicName: topicName
   } %}
   <script type="application/ld+json">
 {{ structured | structuredData(site, collections) | safe }}
