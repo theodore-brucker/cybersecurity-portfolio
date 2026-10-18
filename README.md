@@ -35,7 +35,7 @@ lib/posts.js              date and tag helpers (related posts, topic matching)
 netlify/plugins/indexnow  submits changed URLs to IndexNow after production deploys
 scripts/new-post.js       post scaffolder
 scripts/validate-jsonld.mjs  checks the built JSON-LD (runs in CI)
-docs/seo/                 audit, Cloudflare checklist, and other SEO notes
+docs/seo/                 audit, Cloudflare checklist, content plan, off-site and measurement notes
 ```
 
 ## Weekly workflow
