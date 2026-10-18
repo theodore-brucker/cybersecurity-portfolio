@@ -22,6 +22,9 @@ site/
   feed.njk                -> /feed.xml (Atom)
   sitemap.njk             -> /sitemap.xml (every indexable page)
   robots.njk              -> /robots.txt
+  blog-markdown.njk       -> /blog/<slug>/index.md (original markdown of each post)
+  headers.njk             -> /_headers (serves the markdown copies as text/markdown)
+  llms.njk, llms-full.njk -> /llms.txt, /llms-full.txt
   <key>.txt               IndexNow key file (public by design)
 lib/structured-data.js    builds the JSON-LD @graph for every page
 netlify/plugins/indexnow  submits changed URLs to IndexNow after production deploys
@@ -59,8 +62,15 @@ description: "Optional. One plain sentence for search snippets that says what th
 tags: ["CMMC", "NIST 800-171"]
 readingTime: 6
 draft: true
+# Optional image shown at the top of the post and used in its structured data:
+# image: "/images/posts/example.png"
+# imageAlt: "What the image shows"
+# imageWidth: 1200
+# imageHeight: 675
 ---
 ```
+
+Posts show "Published" with `date`, and "Last updated" when `updated` is later.
 
 ## Search engines and AI crawlers
 
@@ -76,6 +86,18 @@ draft: true
 - **Verification tags**: paste the content values for Google Search Console or
   Bing Webmaster Tools into `verification` in `site/_data/site.js`. Empty
   values render nothing. Google is already verified by the HTML file in `site/`.
+
+### Machine-readable copies
+
+Each post also exists as plain markdown at `/blog/<slug>/index.md`: generated
+front matter (title, author, canonical URL, dates, description, tags) followed
+by the post body exactly as written. The HTML page links to it with
+`rel="alternate" type="text/markdown"`, and a `Link: rel="canonical"` header
+points search engines back at the HTML page. `/llms.txt` lists the site's pages
+for AI agents and coding tools, and `/llms-full.txt` adds the full text of every
+post. Search engines do not use llms.txt for ranking or citations, so treat both
+as a convenience. The summary paragraph in both files is `profileSummary` in
+`site/_data/site.js`; keep it in step with the homepage.
 
 ### Structured data
 

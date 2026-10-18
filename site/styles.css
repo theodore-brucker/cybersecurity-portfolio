@@ -123,6 +123,33 @@ header.site-head {
     padding-bottom: 1.1rem;
 }
 
+/* Wraps the wordmark: an <h1> on the homepage, a <p> elsewhere. It adds no styling. */
+.site-title {
+    margin: 0;
+    max-width: none;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10;
+    padding: 0.5rem 0.75rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+}
+
+.skip-link:focus {
+    left: var(--gutter);
+    top: 0.5rem;
+}
+
 .wordmark {
     font-weight: 800;
     font-size: 1.05rem;
@@ -136,7 +163,7 @@ header.site-head {
     font-weight: 400;
     font-size: 0.72rem;
     color: var(--slate);
-    margin-left: 0.5rem;
+    margin-left: 0.25rem;
     letter-spacing: 0.05em;
 }
 
@@ -312,6 +339,12 @@ strong { font-weight: 600; }
     align-items: flex-start;
 }
 
+.about-grid picture {
+    display: block;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
 .about-grid img {
     width: 168px;
     height: auto;
@@ -461,11 +494,21 @@ strong { font-weight: 600; }
     margin-bottom: 0.2rem;
 }
 
+/* Post titles are <h3> under the homepage's Blog heading and <h2> on /blog/. */
+.post-list h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: normal;
+    margin-bottom: 0.4rem;
+}
+
+.post-list h2 a,
 .post-list h3 a {
     color: var(--ink);
     text-decoration: none;
 }
 
+.post-list h2 a:hover,
 .post-list h3 a:hover { color: var(--federal); text-decoration: underline; }
 
 .post-list p { margin-bottom: 0.35rem; }
@@ -526,6 +569,15 @@ strong { font-weight: 600; }
 }
 
 .post-tags { margin-bottom: 1.75rem; display: flex; gap: 0.35rem; flex-wrap: wrap; }
+
+.post-image { margin: 0 0 1.75rem; }
+
+.post-image img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+}
 
 .post-body h2 {
     margin-top: 2.25rem;
@@ -621,6 +673,7 @@ footer.site-foot .shell {
     .role .logo img { max-height: 32px; }
     .register summary { flex-wrap: wrap; }
     .reg-tags { justify-content: flex-start; width: 100%; padding-left: 1.9em; }
+    .post-list .reg-tags { padding-left: 0; }
     .reg-body { padding-left: 0.25rem; }
     .contact-list li { flex-direction: column; gap: 0.1rem; }
 }

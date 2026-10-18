@@ -1,0 +1,24 @@
+---
+# /llms-full.txt: the /llms.txt summary followed by the full markdown of every
+# published post, for AI agents that want everything in one request.
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.author.name }}
+
+> {{ site.profileSummary }}
+
+The views on this site are Theo Brucker's own and do not represent any current or former employer or client. Every blog post is written by him without AI assistance. The page index is at {{ site.url }}/llms.txt.
+{% for post in collections.posts %}
+---
+
+# {{ post.data.title }}
+
+- URL: {{ site.url }}{{ post.url }}
+- Author: {{ site.author.name }}
+- Published: {{ post.date | dateOnly }}
+- Last updated: {{ post | postModified | dateOnly }}
+- Tags: {{ post.data.tags | reject("equalto", "posts") | join(", ") }}
+
+{{ post.page.rawInput | stripComments | trim | safe }}
+{% endfor %}

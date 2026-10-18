@@ -1,24 +1,39 @@
 ---
 layout: base.njk
 ---
+{%- set modified = page.date | modifiedDate(updated) %}
 <article class="post">
-  {% include "breadcrumb.njk" %}
-  <h1>{{ title }}</h1>
-  <p class="post-meta">
-    <time datetime="{{ page.date | dateOnly }}">{{ page.date | readableDate }}</time>
-    {% if readingTime %} &middot; {{ readingTime }} min read{% endif %}
-  </p>
-  {% set visibleTags = tags | reject("equalto", "posts") %}
-  {% if visibleTags | length %}
-  <p class="post-tags">
-    {% for t in visibleTags %}<span class="tag">{{ t }}</span>{% endfor %}
-  </p>
-  {% endif %}
+  <header class="post-header">
+    {% include "breadcrumb.njk" %}
+    <h1>{{ title }}</h1>
+    <p class="post-meta">
+      By <a href="/#about" rel="author">{{ site.author.name }}</a>
+      &middot; Published <time datetime="{{ page.date | dateOnly }}">{{ page.date | readableDate }}</time>
+      {%- if modified > page.date %}
+      &middot; Last updated <time datetime="{{ modified | dateOnly }}">{{ modified | readableDate }}</time>
+      {%- endif %}
+      {%- if readingTime %} &middot; {{ readingTime }} min read{% endif %}
+    </p>
+    {%- set visibleTags = tags | reject("equalto", "posts") %}
+    {%- if visibleTags | length %}
+    <p class="post-tags">
+      {% for t in visibleTags %}<span class="tag">{{ t }}</span>{% endfor %}
+    </p>
+    {%- endif %}
+  </header>
+  {%- if image %}
+
+  <figure class="post-image">
+    <img src="{{ image }}" alt="{{ imageAlt }}"{% if imageWidth %} width="{{ imageWidth }}" height="{{ imageHeight }}"{% endif %}>
+  </figure>
+  {%- endif %}
 
   <div class="post-body">
     {{ content | safe }}
   </div>
 
-  <hr>
-  <p><a href="/blog/">&larr; All posts</a> &middot; <a href="/feed.xml">Subscribe via RSS</a></p>
+  <footer class="post-footer">
+    <hr>
+    <p><a href="/blog/">&larr; All posts</a> &middot; <a href="/feed.xml">Subscribe via RSS</a></p>
+  </footer>
 </article>

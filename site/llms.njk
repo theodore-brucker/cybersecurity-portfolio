@@ -1,0 +1,29 @@
+---
+# /llms.txt in the llmstxt.org format: a convenience for AI agents and coding
+# tools. Search engines do not use it for ranking or citations.
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.author.name }}
+
+> {{ site.profileSummary }}
+
+The views on this site are Theo Brucker's own and do not represent any current or former employer or client. Every blog post is written by him without AI assistance. The full text of every post is in {{ site.url }}/llms-full.txt, and each post has a markdown copy at its URL followed by index.md.
+
+## About
+
+- [About]({{ site.url }}/#about): His background, his current role, and how implementing NIST SP 800-171 as an ISSM before assessing against it shapes his assessment work.
+- [Experience]({{ site.url }}/#experience): Roles at A-LIGN, Fiber Materials Inc., and Systems Engineering, with dates and responsibilities.
+- [Projects]({{ site.url }}/#projects): A CMMC Level 2 program build, classified system accreditation, an incident response playbook, MDR deployments, a logging verification tool, and a machine learning network intrusion detection system.
+- [Education and certifications]({{ site.url }}/#education): CISSP, CMMC Certified Professional (CCP), CompTIA Security+, and a B.S. in Computer Science from the University of Maine.
+- [Contact]({{ site.url }}/#contact): Email, LinkedIn, and GitHub.
+
+## Blog
+{% for post in collections.posts %}
+- [{{ post.data.title }}]({{ site.url }}{{ post.url }}): {{ post.data.description or post.data.summary }}
+{%- endfor %}
+
+## Optional
+
+- [Atom feed]({{ site.url }}/feed.xml): Full text of every post.
+- [Sitemap]({{ site.url }}/sitemap.xml): Every indexable page with its last modified date.

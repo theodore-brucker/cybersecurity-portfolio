@@ -19,9 +19,12 @@ description: "Personal site of Theo Brucker, a CISSP who builds and assesses cyb
 </section>
 
 <section id="about">
-    <p class="eyebrow">About</p>
+    <h2 class="eyebrow">About</h2>
     <div class="about-grid">
-        <img src="/images/about-me.jpg" alt="Theo Brucker">
+        <picture>
+            <source type="image/webp" srcset="/images/theo-brucker-336.webp 336w, /images/theo-brucker-672.webp 672w" sizes="(max-width: 640px) 140px, 168px">
+            <img src="/images/theo-brucker-336.jpg" srcset="/images/theo-brucker-336.jpg 336w, /images/theo-brucker-800.jpg 800w" sizes="(max-width: 640px) 140px, 168px" width="336" height="504" alt="Headshot of Theo Brucker">
+        </picture>
         <div>
             <p>I'm a cybersecurity professional who builds and evaluates programs that identify and address risk, whether the threat is a nation-state adversary or a regulatory obligation. Since July 2026 I have been a Staff Consultant on the CMMC practice at A-LIGN, where I run readiness assessments and CMMC Level 2 assessments against NIST 800-171.</p>
             <p>I came to that work from the other side of the table. As ISSM at a defense manufacturer I built a cybersecurity program from nothing: sourcing and deploying EDR, SIEM, ITDR, and MFA, standing up vulnerability management and security awareness, accrediting classified systems under DCSA and NIST 800-53, and carrying a CMMC Level 2 effort from gap assessment through control implementation and C3PAO engagement. Before that I spent three years as a SOC analyst at an MSSP, handling incident response across roughly 100 client environments.</p>
@@ -31,10 +34,10 @@ description: "Personal site of Theo Brucker, a CISSP who builds and assesses cyb
 </section>
 
 <section id="experience">
-    <p class="eyebrow">Experience</p>
+    <h2 class="eyebrow">Experience</h2>
 
     <div class="role">
-        <div class="logo"><img src="/images/align-logo.png" alt="A-LIGN"></div>
+        <div class="logo"><img src="/images/align-logo.png" width="1014" height="473" alt="A-LIGN logo"></div>
         <div>
             <div class="role-head">
                 <h3>Staff Consultant, CMMC &mdash; A-LIGN</h3>
@@ -45,7 +48,7 @@ description: "Personal site of Theo Brucker, a CISSP who builds and assesses cyb
     </div>
 
     <div class="role">
-        <div class="logo"><img src="/images/fmi-logo.png" alt="Fiber Materials Inc"></div>
+        <div class="logo"><img src="/images/fmi-logo.png" width="204" height="192" alt="Fiber Materials Inc. logo"></div>
         <div>
             <div class="role-head">
                 <h3>Cyber Security Specialist / ISSM &mdash; Fiber Materials Inc.</h3>
@@ -56,7 +59,7 @@ description: "Personal site of Theo Brucker, a CISSP who builds and assesses cyb
     </div>
 
     <div class="role">
-        <div class="logo"><img src="/images/se-logo.jpeg" alt="Systems Engineering"></div>
+        <div class="logo"><img src="/images/se-logo.jpeg" width="400" height="400" alt="Systems Engineering logo"></div>
         <div>
             <div class="role-head">
                 <h3>SOC Analyst I &amp; II &mdash; Systems Engineering</h3>
@@ -68,7 +71,7 @@ description: "Personal site of Theo Brucker, a CISSP who builds and assesses cyb
 </section>
 
 <section id="projects">
-    <p class="eyebrow">Projects</p>
+    <h2 class="eyebrow">Projects</h2>
     <div class="register">
         <details>
             <summary>
@@ -134,7 +137,7 @@ description: "Personal site of Theo Brucker, a CISSP who builds and assesses cyb
 </section>
 
 <section id="education">
-    <p class="eyebrow">Education &amp; Certifications</p>
+    <h2 class="eyebrow">Education &amp; Certifications</h2>
     <ul class="contact-list">
         <li><span class="k">2026</span><span>CISSP &middot; CMMC Certified Professional (CCP)</span></li>
         <li><span class="k">2024</span><span>B.S. in Computer Science, University of Maine</span></li>
@@ -143,12 +146,12 @@ description: "Personal site of Theo Brucker, a CISSP who builds and assesses cyb
 </section>
 
 <section id="blog">
-    <p class="eyebrow">Blog</p>
+    <h2 class="eyebrow">Blog</h2>
     <p>Weekly blog on building cybersecurity programs and interesting side projects or news.</p>
     <ul class="post-list">
     {% for post in collections.posts | slice5 %}
         <li>
-            <span class="post-date">{{ post.date | readableDate }}</span>
+            <span class="post-date"><time datetime="{{ post.date | dateOnly }}">{{ post.date | readableDate }}</time></span>
             <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
             <p>{{ post.data.summary }}</p>
         </li>
@@ -161,7 +164,7 @@ description: "Personal site of Theo Brucker, a CISSP who builds and assesses cyb
 </section>
 
 <section id="contact">
-    <p class="eyebrow">Contact</p>
+    <h2 class="eyebrow">Contact</h2>
     <ul class="contact-list">
         <li><span class="k">Email</span><a href="mailto:bruckertheodore@gmail.com">bruckertheodore@gmail.com</a></li>
         <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/theobrucker/" target="_blank" rel="noopener noreferrer">linkedin.com/in/theobrucker</a></li>

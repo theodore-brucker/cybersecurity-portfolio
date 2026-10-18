@@ -1,0 +1,13 @@
+---
+permalink: /_headers
+eleventyExcludeFromCollections: true
+---
+# Built from site/headers.njk. Netlify applies these alongside netlify.toml.
+# Markdown copies of posts are served as text and point search engines at the
+# HTML version, so they never compete with it in results.
+{%- for post in collections.posts %}
+
+{{ post.url }}index.md
+  Content-Type: text/markdown; charset=utf-8
+  Link: <{{ site.url }}{{ post.url }}>; rel="canonical"
+{%- endfor %}

@@ -1,0 +1,23 @@
+---
+# A markdown copy of each published post at /blog/<slug>/index.md, linked from
+# the post's <head> with rel="alternate" type="text/markdown". The body below the
+# generated front matter is the post's original markdown, byte for byte.
+# site/headers.njk serves these as text/markdown with a canonical link header
+# pointing at the HTML page.
+pagination:
+  data: collections.posts
+  size: 1
+  alias: post
+permalink: "/blog/{{ post.fileSlug }}/index.md"
+eleventyExcludeFromCollections: true
+---
+---
+title: {{ post.data.title | dump | safe }}
+author: {{ site.author.name | dump | safe }}
+canonical_url: {{ (site.url + post.url) | dump | safe }}
+date: {{ post.date | dateOnly }}
+updated: {{ post | postModified | dateOnly }}
+description: {{ (post.data.description or post.data.summary) | dump | safe }}
+tags: {{ post.data.tags | reject("equalto", "posts") | dump | safe }}
+---
+{{ post.page.rawInput | safe }}
