@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "24"
 
+# After each production deploy goes live, submit changed sitemap URLs to IndexNow.
+[[plugins]]
+  package = "/netlify/plugins/indexnow"
+
 # Old hash-based blog link keeps working.
 [[redirects]]
   from = "/blog"

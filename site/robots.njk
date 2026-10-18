@@ -1,0 +1,36 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+# robots.txt for {{ site.url }}
+# Built from site/robots.njk; edit that file, not the output.
+# Cloudflare can prepend its own rules at the edge. See docs/seo/cloudflare-checklist.md.
+
+# Search indexing and user-triggered fetches. AI answer engines cite pages these
+# crawlers can read, so blocking one removes the site from that engine's answers.
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Model training. Set by allowTrainingCrawlers in site/_data/site.js.
+# Blocking these does not affect citations in AI search answers.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+{% if site.allowTrainingCrawlers %}Allow: /{% else %}Disallow: /{% endif %}
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: {{ site.url }}/sitemap.xml

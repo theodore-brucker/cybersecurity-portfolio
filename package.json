@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "eleventy --serve",
     "build": "eleventy",
-    "new": "node scripts/new-post.js"
+    "new": "node scripts/new-post.js",
+    "indexnow:all": "node scripts/indexnow-submit.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
