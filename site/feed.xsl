@@ -114,7 +114,7 @@
                 <xsl:value-of select="atom:title"/>
               </a>
             </h2>
-            <p class="meta"><xsl:value-of select="substring(atom:updated, 1, 10)"/></p>
+            <p class="meta"><xsl:value-of select="substring(atom:published, 1, 10)"/></p>
             <p><xsl:value-of select="atom:summary"/></p>
           </article>
         </xsl:for-each>

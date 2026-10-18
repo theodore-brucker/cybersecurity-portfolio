@@ -91,6 +91,14 @@ export default function (eleventyConfig) {
   // The later of a page's date and its optional `updated` front matter value.
   eleventyConfig.addFilter("modifiedDate", (date, updated) => latest([date, toDate(updated)]));
 
+  // Newest revision across a list of posts, for the feed's <updated>.
+  eleventyConfig.addFilter("newestModified", (posts) => latest((posts || []).map(postModified)));
+
+  // Removes HTML comments (such as the pre-publish checklist) from markdown.
+  eleventyConfig.addFilter("stripComments", (text) =>
+    String(text || "").replace(/<!--[\s\S]*?-->\s*/g, "")
+  );
+
   // One JSON-LD @graph per page; see lib/structured-data.js.
   eleventyConfig.addFilter("structuredData", (data, site, collections) =>
     serializeGraph(buildGraph(data, site, collections))
