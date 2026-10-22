@@ -622,6 +622,14 @@ strong { font-weight: 600; }
 
 .topic-link { margin-top: 1rem; }
 
+/* Training download page */
+.training-list {
+    margin: 0 0 2rem 1.25rem;
+    padding: 0;
+    max-width: var(--measure);
+}
+.training-list li { margin-bottom: 0.4rem; }
+
 /* Topic hubs */
 .topic { padding-top: 2.5rem; }
 
