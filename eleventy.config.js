@@ -29,6 +29,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("site/images");
   eleventyConfig.addPassthroughCopy("site/styles.css");
   eleventyConfig.addPassthroughCopy("site/fonts");
+  // Downloadable files linked from pages (the scam awareness training PDF).
+  eleventyConfig.addPassthroughCopy("site/files");
   eleventyConfig.addPassthroughCopy("site/feed.xsl");
   eleventyConfig.addPassthroughCopy("site/site.webmanifest");
   eleventyConfig.addPassthroughCopy("site/*.png");
