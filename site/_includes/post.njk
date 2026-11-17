@@ -8,12 +8,10 @@ layout: base.njk
     {% include "breadcrumb.njk" %}
     <h1>{{ title }}</h1>
     <p class="post-meta">
-      By <a href="/#about" rel="author">{{ site.author.name }}</a>
-      &middot; Published <time datetime="{{ page.date | dateOnly }}">{{ page.date | readableDate }}</time>
-      {%- if modified > page.date %}
-      &middot; Last updated <time datetime="{{ modified | dateOnly }}">{{ modified | readableDate }}</time>
-      {%- endif %}
-      {%- if readingTime %} &middot; {{ readingTime }} min read{% endif %}
+      By <a href="/#about" rel="author">{{ site.author.name }}</a>.
+      Published <time datetime="{{ page.date | dateOnly }}">{{ page.date | readableDate }}</time>.
+      {%- if modified > page.date %} Last updated <time datetime="{{ modified | dateOnly }}">{{ modified | readableDate }}</time>.{% endif %}
+      {%- if readingTime %} {{ readingTime }} minute read.{% endif %}
     </p>
     {%- if visibleTags | length %}
     <p class="post-tags">
@@ -90,6 +88,6 @@ layout: base.njk
 
   <footer class="post-footer">
     <hr>
-    <p><a href="/blog/">&larr; All posts</a> &middot; <a href="/feed.xml">Subscribe via RSS</a></p>
+    <p><a href="/blog/">All posts</a> or <a href="/feed.xml">subscribe by RSS</a></p>
   </footer>
 </article>

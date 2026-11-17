@@ -1,0 +1,28 @@
+{#- Homepage header: the green band with the nav, headshot, name, and intro.
+    base.njk includes it in place of the inner-page header. The intro's first
+    sentence is the source for site.author.description in _data/site.js, so
+    update both together. -#}
+<header class="band">
+  <div class="shell">
+    <nav class="band-nav" aria-label="Site">
+      <ul>
+        <li><a href="/#writing">Writing</a></li>
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/#certifications">Certifications</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="band-row">
+      <picture class="band-photo">
+        <source type="image/webp" srcset="/images/theo-brucker-336.webp 336w, /images/theo-brucker-672.webp 672w" sizes="(max-width: 640px) 200px, 260px">
+        <img src="/images/theo-brucker-336.jpg" srcset="/images/theo-brucker-336.jpg 336w, /images/theo-brucker-800.jpg 800w" sizes="(max-width: 640px) 200px, 260px" width="260" height="325" alt="Headshot of Theo Brucker">
+      </picture>
+      <div class="band-text" id="about">
+        <h1>{{ site.author.name }}</h1>
+        <p class="band-lede">CMMC Certified Assessor at A-LIGN. I assess defense contractors against NIST SP 800-171, after a year running a security program as an ISSM and three years before that in a managed SOC.</p>
+        <p class="band-creds">CISSP, CCA, CCP, Security+. B.S. in Computer Science, University of Maine.</p>
+      </div>
+    </div>
+  </div>
+</header>

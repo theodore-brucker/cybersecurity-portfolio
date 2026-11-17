@@ -25,12 +25,10 @@ breadcrumb:
       <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
       <p>{{ post.data.summary }}</p>
       {% set visibleTags = post.data.tags | reject("equalto", "posts") %}
-      {% if visibleTags | length %}<span class="reg-tags" style="justify-content:flex-start">{% for t in visibleTags %}<span class="tag">{{ t }}</span>{% endfor %}</span>{% endif %}
+      {% if visibleTags | length %}<span class="reg-tags">{% for t in visibleTags %}<span class="tag">{{ t }}</span>{% endfor %}</span>{% endif %}
     </li>
   {% endfor %}
   </ul>
 
-  <div class="blog-foot">
-    <a href="/feed.xml" class="rss-link">Subscribe via RSS</a>
-  </div>
+  <p class="blog-foot"><a href="/feed.xml">Subscribe by RSS</a></p>
 </section>

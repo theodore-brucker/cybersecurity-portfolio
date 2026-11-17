@@ -17,7 +17,7 @@ Ordered by how much each one limits retrieval and citation.
 9. **There is no published CMMC or NIST SP 800-171 writing yet.** The only CMMC post is an unpublished draft template, so practitioner citations depend on new posts. Phase 4 adds the templates and a content plan. The site also does not state a location anywhere, so regional queries such as "CMMC consultant New England" have nothing on the site to match.
 10. **Fixed in this PR:** the homepage blog blurb now reads "Weekly blog on building cybersecurity programs and interesting side projects or news." A new CI check also fails any pull request that changes text below the front matter of a post in `site/blog/`.
 
-Already in good shape: every page has a self-referencing canonical URL, all content is in the static HTML (the projects register uses `<details>` and `<summary>`), drafts are never written to disk and CI checks for leaks, fonts are self-hosted and preloaded, the feed carries full post content, and the Content Security Policy does not interfere with JSON-LD because data blocks are never executed.
+Already in good shape: every page has a self-referencing canonical URL, all content is in the static HTML, drafts are never written to disk and CI checks for leaks, fonts are self-hosted and preloaded, the feed carries full post content, and the Content Security Policy does not interfere with JSON-LD because data blocks are never executed.
 
 Nothing found here blocks Phase 1.
 

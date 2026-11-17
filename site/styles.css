@@ -1,62 +1,50 @@
 /* ==========================================================
-   theobrucker.us — design tokens
-   Paper / ink / federal blue, drawn from the document world
-   of NIST publications and assessment paperwork.
+   theobrucker.us styles
+   One typeface (Charis SIL), white page, dark green band on
+   the homepage and header. Rules for changing any of this are
+   in docs/DESIGN.md.
    ========================================================== */
 
 @font-face {
-    font-family: 'Public Sans';
+    font-family: 'Charis SIL';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/public-sans-latin-400-normal.woff2') format('woff2');
+    src: url('/fonts/charis-sil-latin-400-normal.woff2') format('woff2');
 }
 @font-face {
-    font-family: 'Public Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url('/fonts/public-sans-latin-600-normal.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Public Sans';
-    font-style: normal;
-    font-weight: 800;
-    font-display: swap;
-    src: url('/fonts/public-sans-latin-800-normal.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'IBM Plex Mono';
-    font-style: normal;
+    font-family: 'Charis SIL';
+    font-style: italic;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+    src: url('/fonts/charis-sil-latin-400-italic.woff2') format('woff2');
 }
 @font-face {
-    font-family: 'IBM Plex Mono';
+    font-family: 'Charis SIL';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-display: swap;
-    src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+    src: url('/fonts/charis-sil-latin-700-normal.woff2') format('woff2');
 }
 
 :root {
-    --paper: #F5F7F6;
-    --paper-raised: #FFFFFF;
-    --ink: #0D1B26;
-    --ink-soft: #33454F;
-    --slate: #5C6B70;
-    --line: #D3DBD8;
-    --fill: #EBEFED;
-    --federal: #1A4B8C;
-    --federal-deep: #123763;
-    --signal: #A6192E;
+    --paper: #FFFFFF;
+    --ink: #171C26;
+    --muted: #4A5260;
+    --line: #DCE0E8;
+    --tint: #EEF3F0;
+    --green: #22553F;
+    --green-deep: #123426;
+    --band: #1F3B32;
+    --band-text: #FFFFFF;
+    --band-soft: #E3ECE7;
+    --band-muted: #C3D3CA;
 
-    --font-body: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+    --font: 'Charis SIL', Charter, 'Bitstream Charter', Georgia, serif;
+    --mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
 
-    --measure: 68ch;
-    --gutter: clamp(1rem, 4vw, 2rem);
+    --measure: 720px;
+    --gutter: clamp(1.25rem, 4vw, 2.5rem);
 }
 
 *, *::before, *::after {
@@ -65,73 +53,74 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
 body {
-    font-family: var(--font-body);
-    font-size: clamp(15px, 1.6vw, 16.5px);
-    line-height: 1.65;
+    font-family: var(--font);
+    font-size: clamp(17px, 0.9rem + 0.35vw, 19px);
+    line-height: 1.6;
     color: var(--ink);
-    background-color: var(--paper);
+    background: var(--paper);
 }
 
-::selection {
-    background: var(--federal);
-    color: #fff;
+::selection { background: var(--green); color: #fff; }
+
+a { color: var(--green); text-underline-offset: 3px; }
+a:hover { color: var(--green-deep); }
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
 }
 
-/* ---------- Marking bar ---------- */
+strong { font-weight: 700; }
 
-.marking-bar {
-    background: var(--ink);
-    color: var(--paper);
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.12em;
-    text-align: center;
-    text-transform: uppercase;
-    padding: 0.3rem var(--gutter);
+p { margin-bottom: 1rem; }
+
+h1 {
+    font-size: clamp(2.1rem, 1.4rem + 3vw, 3.25rem);
+    line-height: 1.08;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.75rem);
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 2rem 0 1.25rem;
 }
 
 /* ---------- Shell ---------- */
 
 .shell {
-    max-width: 880px;
+    max-width: 1040px;
     margin: 0 auto;
     padding: 0 var(--gutter);
 }
 
-header.site-head {
-    border-bottom: 1px solid var(--line);
-    background: var(--paper);
-}
+main.shell { padding-top: 3rem; padding-bottom: 3.5rem; }
 
-.site-head .shell {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
-    padding-top: 1.1rem;
-    padding-bottom: 1.1rem;
-}
-
-/* Wraps the wordmark: an <h1> on the homepage, a <p> elsewhere. It adds no styling. */
-.site-title {
-    margin: 0;
-    max-width: none;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    letter-spacing: inherit;
-}
+main.shell > section,
+main.shell > article { max-width: var(--measure); }
 
 .skip-link {
     position: absolute;
@@ -140,366 +129,177 @@ header.site-head {
     z-index: 10;
     padding: 0.5rem 0.75rem;
     background: var(--ink);
-    color: var(--paper);
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-}
-
-.skip-link:focus {
-    left: var(--gutter);
-    top: 0.5rem;
-}
-
-.wordmark {
-    font-weight: 800;
-    font-size: 1.05rem;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    text-decoration: none;
-}
-
-.wordmark .creds {
-    font-family: var(--font-mono);
-    font-weight: 400;
-    font-size: 0.72rem;
-    color: var(--slate);
-    margin-left: 0.25rem;
-    letter-spacing: 0.05em;
-}
-
-nav.site-nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 1.4rem;
-}
-
-nav.site-nav a {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--ink-soft);
-    padding: 0.25rem 0;
-    border-bottom: 2px solid transparent;
-}
-
-nav.site-nav a:hover,
-nav.site-nav a[aria-current="page"] {
-    color: var(--federal);
-    border-bottom-color: var(--federal);
-}
-
-/* ---------- Sections ---------- */
-
-main {
-    padding-bottom: 3rem;
-}
-
-section {
-    padding: 2.75rem 0 0.5rem;
-    scroll-margin-top: 1rem;
-}
-
-.eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--slate);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.9rem;
-}
-
-.eyebrow::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--line);
-}
-
-.breadcrumb ol {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.breadcrumb li + li::before {
-    content: "/";
-    content: "/" / "";
-    margin-right: 0.5rem;
-}
-
-.breadcrumb a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.breadcrumb a:hover {
-    color: var(--federal);
-    text-decoration: underline;
-}
-
-h1 {
-    font-size: clamp(2rem, 6vw, 3.1rem);
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    line-height: 1.08;
-    margin-bottom: 1rem;
-}
-
-h2 {
-    font-size: clamp(1.25rem, 3vw, 1.55rem);
-    font-weight: 800;
-    letter-spacing: -0.015em;
-    margin-bottom: 1rem;
-}
-
-h3 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-p { margin-bottom: 1rem; max-width: var(--measure); }
-
-a { color: var(--federal); text-underline-offset: 3px; }
-a:hover { color: var(--federal-deep); }
-
-a:focus-visible,
-button:focus-visible,
-summary:focus-visible {
-    outline: 2px solid var(--signal);
-    outline-offset: 3px;
-    border-radius: 1px;
-}
-
-strong { font-weight: 600; }
-
-/* ---------- Hero ---------- */
-
-#intro {
-    padding-top: 3.5rem;
-}
-
-.lede {
-    font-size: clamp(1.02rem, 2.2vw, 1.18rem);
-    color: var(--ink-soft);
-    max-width: 58ch;
-}
-
-.cta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 1.5rem 0 0.5rem;
-}
-
-.cta-button {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.65rem 1.15rem;
-    border: 1px solid var(--ink);
-    background: var(--ink);
-    color: var(--paper);
-    transition: background 0.15s ease, color 0.15s ease;
-}
-
-.cta-button:hover {
-    background: var(--federal);
-    border-color: var(--federal);
     color: #fff;
 }
 
-.cta-button.ghost {
-    background: transparent;
-    color: var(--ink);
+.skip-link:focus { left: var(--gutter); top: 0.5rem; }
+
+/* ---------- Header on inner pages ---------- */
+
+header.site-head {
+    background: var(--band);
+    color: var(--band-text);
 }
 
-.cta-button.ghost:hover {
-    border-color: var(--federal);
-    color: var(--federal);
-    background: transparent;
-}
-
-/* ---------- About ---------- */
-
-.about-grid {
+.site-head .shell {
     display: flex;
-    gap: 1.75rem;
-    align-items: flex-start;
-}
-
-.about-grid picture {
-    display: block;
-    flex-shrink: 0;
-    line-height: 0;
-}
-
-.about-grid img {
-    width: 168px;
-    height: auto;
-    flex-shrink: 0;
-    border: 1px solid var(--line);
-}
-
-/* ---------- Experience ---------- */
-
-.role {
-    display: grid;
-    grid-template-columns: 92px 1fr;
-    gap: 1.25rem;
-    padding: 1.2rem 0;
-    border-top: 1px solid var(--line);
-}
-
-.role:last-of-type { border-bottom: 1px solid var(--line); }
-
-.role .logo {
-    background: var(--ink);
-    border-radius: 3px;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 1;
-    align-self: start;
-}
-
-.role .logo img {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-}
-
-.role-head {
-    display: flex;
-    flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.25rem 0.75rem;
-    margin-bottom: 0.25rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
 }
 
-.role-head h3 { margin-bottom: 0; }
-
-.role .dates {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--slate);
-    letter-spacing: 0.04em;
+/* Wraps the wordmark: a <p> on inner pages. It adds no styling. */
+.site-title {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
 }
 
-.role p { margin-bottom: 0.35rem; }
-
-/* ---------- Project register ---------- */
-
-.register {
-    border-top: 1px solid var(--line);
+.wordmark {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--band-text);
+    text-decoration: none;
 }
 
-.register details {
-    border-bottom: 1px solid var(--line);
-}
+.wordmark:hover { color: var(--band-text); text-decoration: underline; }
 
-.register summary {
+.site-nav ul {
     list-style: none;
-    cursor: pointer;
-    display: flex;
-    align-items: baseline;
-    gap: 0.9rem;
-    padding: 0.95rem 0.25rem;
-}
-
-.register summary::-webkit-details-marker { display: none; }
-
-.register summary:hover { background: var(--fill); }
-
-.register summary .indicator {
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    color: var(--slate);
-    width: 1em;
-    flex-shrink: 0;
-}
-
-.register details[open] summary .indicator { color: var(--federal); }
-.register summary .indicator::before { content: "+"; }
-.register details[open] summary .indicator::before { content: "\2212"; }
-
-.register summary .reg-title {
-    font-weight: 600;
-    flex: 1;
-    min-width: 0;
-}
-
-.register details[open] summary .reg-title { color: var(--federal); }
-
-.reg-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    gap: 0.25rem 1.6rem;
+}
+
+.site-nav a,
+.band-nav a {
+    color: var(--band-text);
+    font-size: 0.95rem;
+}
+
+.site-nav a:hover,
+.band-nav a:hover { color: var(--band-text); text-decoration-thickness: 2px; }
+
+.site-nav a[aria-current="page"] { text-decoration-thickness: 2px; }
+
+/* ---------- Homepage band ---------- */
+
+.band {
+    background: var(--band);
+    color: var(--band-text);
+}
+
+.band .shell {
+    padding-top: 1.75rem;
+    padding-bottom: 3.75rem;
+}
+
+.band-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
+    gap: 0.25rem 1.6rem;
+    margin-bottom: 2.5rem;
 }
 
-.tag {
-    font-family: var(--font-mono);
-    font-size: 0.64rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--slate);
-    border: 1px solid var(--line);
-    background: var(--paper-raised);
-    padding: 0.1rem 0.45rem;
-    white-space: nowrap;
+.band-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 2.25rem 3.25rem;
 }
 
-.reg-body {
-    padding: 0.25rem 0.25rem 1.1rem 2.15rem;
-}
+.band-photo { flex: 0 0 auto; line-height: 0; }
 
-.reg-body p { margin-bottom: 0.5rem; }
-
-.reg-body a { font-weight: 600; }
-
-/* ---------- Blog ---------- */
-
-.post-list {
-    list-style: none;
-    border-top: 1px solid var(--line);
-}
-
-.post-list li {
-    border-bottom: 1px solid var(--line);
-    padding: 1.05rem 0.25rem;
-}
-
-.post-list .post-date {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--slate);
-    letter-spacing: 0.04em;
+.band-photo img {
     display: block;
-    margin-bottom: 0.2rem;
+    width: 260px;
+    height: 325px;
+    object-fit: cover;
+    object-position: center 20%;
 }
 
-/* Post titles are <h3> under the homepage's Blog heading and <h2> on /blog/. */
-.post-list h2 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: normal;
+.band-text { flex: 1 1 420px; min-width: 0; }
+
+.band h1 {
+    font-size: clamp(2.6rem, 1.6rem + 4vw, 3.9rem);
+    line-height: 1.05;
+    margin-bottom: 1.1rem;
+}
+
+.band-lede {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.375rem);
+    line-height: 1.45;
+    color: var(--band-soft);
+    max-width: 31em;
+    margin-bottom: 0.9rem;
+}
+
+.band-creds {
+    color: var(--band-muted);
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+/* ---------- Homepage sections ---------- */
+
+main.home {
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+}
+
+.home > section {
+    max-width: var(--measure);
+    margin-bottom: 3.75rem;
+    scroll-margin-top: 1rem;
+}
+
+.home .entry { margin-bottom: 1.6rem; }
+.home .entry:last-child { margin-bottom: 0; }
+
+.home .entry h3 { font-size: 1.3rem; margin-bottom: 0; }
+
+.entry-meta {
+    color: var(--muted);
+    font-style: italic;
     margin-bottom: 0.4rem;
+}
+
+.cert-list {
+    list-style: none;
+    margin-bottom: 1.1rem;
+}
+
+.cert-list li { margin-bottom: 0.75rem; }
+
+.cert-list .issuer {
+    display: block;
+    color: var(--muted);
+    font-style: italic;
+}
+
+.project { margin-bottom: 1.1rem; }
+.project:last-child { margin-bottom: 0; }
+
+.contact-line { font-size: 1.15rem; margin-bottom: 0; }
+
+/* ---------- Post lists ---------- */
+
+.post-list { list-style: none; }
+
+.post-list li { margin-bottom: 1.6rem; }
+
+.post-list h2,
+.post-list h3 {
+    font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem);
+    line-height: 1.3;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
 }
 
 .post-list h2 a,
@@ -509,66 +309,92 @@ strong { font-weight: 600; }
 }
 
 .post-list h2 a:hover,
-.post-list h3 a:hover { color: var(--federal); text-decoration: underline; }
+.post-list h3 a:hover { color: var(--ink); text-decoration: underline; }
 
-.post-list p { margin-bottom: 0.35rem; }
+.post-list p { color: var(--muted); margin-bottom: 0; }
 
-.blog-foot {
-    margin-top: 1.25rem;
+.post-list .post-date {
+    display: block;
+    color: var(--muted);
+    font-style: italic;
+}
+
+.blog-foot { margin-top: 1.25rem; }
+
+/* Tags read as an italic list ("CMMC, NIST 800-171"). */
+.reg-tags,
+.post-tags { display: block; color: var(--muted); font-style: italic; }
+
+.tag + .tag::before { content: ", "; }
+
+/* ---------- Breadcrumb ---------- */
+
+.breadcrumb { margin-bottom: 1rem; color: var(--muted); font-size: 0.95rem; }
+
+.breadcrumb ol {
+    list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    align-items: center;
+    gap: 0.4rem;
 }
 
-.blog-foot .rss-link {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
+.breadcrumb li + li::before {
+    content: "/";
+    content: "/" / "";
+    margin-right: 0.4rem;
 }
 
-/* ---------- Contact ---------- */
+.breadcrumb a { color: inherit; }
+.breadcrumb a:hover { color: var(--green); }
 
-.contact-list {
-    list-style: none;
-    border-top: 1px solid var(--line);
-    max-width: var(--measure);
+/* Section headings on inner pages that predate this design. */
+h2.eyebrow { margin-top: 2.25rem; }
+
+/* ---------- Lede and buttons on inner pages ---------- */
+
+.lede {
+    font-size: clamp(1.1rem, 1rem + 0.4vw, 1.25rem);
+    line-height: 1.5;
+    color: var(--muted);
 }
 
-.contact-list li {
+.cta-row {
     display: flex;
-    gap: 1.25rem;
-    padding: 0.7rem 0.25rem;
-    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin: 1.5rem 0;
 }
 
-.contact-list .k {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--slate);
-    width: 6.5rem;
-    flex-shrink: 0;
-    padding-top: 0.2rem;
+.cta-button {
+    display: inline-block;
+    padding: 0.6rem 1.1rem;
+    border-radius: 3px;
+    background: var(--green);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
 }
+
+.cta-button:hover { background: var(--green-deep); color: #fff; }
+
+.cta-button.ghost {
+    padding: 0;
+    background: none;
+    color: var(--green);
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.cta-button.ghost:hover { background: none; color: var(--green-deep); }
 
 /* ---------- Post pages ---------- */
 
-.post {
-    max-width: 720px;
-    padding-top: 2.5rem;
-}
+.post-header h1 { margin-bottom: 0.6rem; }
 
-.post-meta {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    color: var(--slate);
-    letter-spacing: 0.04em;
-    margin-bottom: 0.75rem;
-}
+.post-meta { color: var(--muted); margin-bottom: 0.35rem; }
 
-.post-tags { margin-bottom: 1.75rem; display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.post-tags { margin-bottom: 1.75rem; }
 
 .post-image { margin: 0 0 1.75rem; }
 
@@ -576,98 +402,45 @@ strong { font-weight: 600; }
     display: block;
     max-width: 100%;
     height: auto;
-    border: 1px solid var(--line);
-}
-
-.post-body h2,
-.post-section > h2 {
-    margin-top: 2.25rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--line);
 }
 
 /* Answer-first box from the `bluf` front matter field. */
 .post-bluf {
-    background: var(--paper-raised);
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--federal);
-    padding: 1rem 1.15rem;
+    background: var(--tint);
+    padding: 1rem 1.2rem;
     margin: 0 0 1.75rem;
-    max-width: var(--measure);
 }
 
 .post-bluf p:last-child { margin-bottom: 0; }
 
-.post-bluf-label {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin-bottom: 0.4rem;
-}
+.post-bluf-label { font-weight: 700; margin-bottom: 0.3rem; }
 
-/* FAQ, Sources, and Related posts after the post body. */
-.post-section { padding: 0; }
+.post-body h2,
+.post-section > h2 { margin-top: 2.25rem; }
 
-.post-faq h3 { margin-top: 1.25rem; }
+.post-body h3 { margin: 1.5rem 0 0.5rem; }
 
-.post-sources ol {
-    margin: 0 0 1rem 1.4rem;
-    max-width: var(--measure);
-}
+.post-body ul,
+.post-body ol { margin: 0 0 1rem 1.4rem; }
 
-.post-sources li { margin-bottom: 0.4rem; }
-
-.topic-link { margin-top: 1rem; }
-
-/* Training download page */
-.training-list {
-    margin: 0 0 2rem 1.25rem;
-    padding: 0;
-    max-width: var(--measure);
-}
-.training-list li { margin-bottom: 0.4rem; }
-
-/* Topic hubs */
-.topic { padding-top: 2.5rem; }
-
-.topic-intro { margin-bottom: 2rem; }
-
-.draft-note,
-.todo-placeholder {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--signal);
-    border: 1px dashed var(--signal);
-    padding: 0.6rem 0.8rem;
-    max-width: var(--measure);
-}
-
-.post-body ul, .post-body ol {
-    margin: 0 0 1rem 1.4rem;
-    max-width: var(--measure);
-}
+.post-body li { margin-bottom: 0.3rem; }
 
 .post-body blockquote {
-    border-left: 3px solid var(--federal);
-    padding-left: 1.1rem;
-    margin: 1.5rem 0;
-    color: var(--ink-soft);
+    margin: 1.5rem 0 1.5rem 1.4rem;
+    color: var(--muted);
+    font-style: italic;
 }
 
 .post-body code {
-    font-family: var(--font-mono);
-    font-size: 0.88em;
-    background: var(--fill);
-    border: 1px solid var(--line);
-    padding: 0.1rem 0.35rem;
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background: var(--tint);
+    padding: 0.1rem 0.3rem;
 }
 
 .post-body pre {
     background: var(--ink);
-    color: var(--paper);
+    color: #F2F4F7;
     padding: 1.1rem;
     overflow-x: auto;
     margin-bottom: 1.25rem;
@@ -675,65 +448,68 @@ strong { font-weight: 600; }
 
 .post-body pre code {
     background: none;
-    border: none;
     padding: 0;
     color: inherit;
 }
 
-hr {
-    border: none;
-    border-top: 1px solid var(--line);
-    margin: 2rem 0 1.25rem;
+.post-section { padding: 0; }
+
+.post-faq h3 { margin-top: 1.25rem; margin-bottom: 0.35rem; }
+
+.post-sources ol {
+    margin: 0 0 1rem 1.4rem;
+}
+
+.post-sources li { margin-bottom: 0.4rem; }
+
+.topic-link { margin-top: 1rem; }
+
+.post-footer p { color: var(--muted); }
+
+/* ---------- Topic hubs and the training page ---------- */
+
+.topic-intro { margin-bottom: 1rem; }
+
+.training-list { margin: 0 0 2rem 1.25rem; }
+.training-list li { margin-bottom: 0.4rem; }
+
+.draft-note,
+.todo-placeholder {
+    color: #8A1F1F;
+    border: 1px dashed #8A1F1F;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1.25rem;
 }
 
 /* ---------- Footer ---------- */
 
 footer.site-foot {
     border-top: 1px solid var(--line);
-    background: var(--fill);
-    margin-top: 2rem;
 }
 
 footer.site-foot .shell {
     padding-top: 1.5rem;
-    padding-bottom: 1.75rem;
+    padding-bottom: 2rem;
 }
 
-.disclaimer {
-    font-size: 0.8rem;
-    color: var(--slate);
-    line-height: 1.55;
+.site-foot p {
     max-width: var(--measure);
-    margin-bottom: 0.75rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
 }
 
-.pledge {
-    font-family: var(--font-mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.03em;
-    color: var(--ink-soft);
-    padding-left: 0.75rem;
-    border-left: 2px solid var(--federal);
-    margin-bottom: 0.9rem;
-}
+.site-foot .pledge { color: var(--ink); }
 
-.colophon {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--slate);
-    letter-spacing: 0.03em;
-}
+.site-foot .colophon { margin-bottom: 0; }
 
-/* ---------- Mobile ---------- */
+/* ---------- Phones ---------- */
 
 @media (max-width: 640px) {
-    .about-grid { flex-direction: column; }
-    .about-grid img { width: 140px; }
-    .role { grid-template-columns: 72px 1fr; gap: 0.9rem; }
-    .role .logo img { max-height: 32px; }
-    .register summary { flex-wrap: wrap; }
-    .reg-tags { justify-content: flex-start; width: 100%; padding-left: 1.9em; }
-    .post-list .reg-tags { padding-left: 0; }
-    .reg-body { padding-left: 0.25rem; }
-    .contact-list li { flex-direction: column; gap: 0.1rem; }
+    .band-nav ul { justify-content: flex-start; margin-bottom: 1.75rem; }
+    .band .shell { padding-bottom: 2.75rem; }
+    .band-photo img { width: 200px; height: 250px; }
+    main.home { padding-top: 2.75rem; }
+    .home > section { margin-bottom: 3rem; }
 }

@@ -1,183 +1,68 @@
 ---
 layout: base.njk
 permalink: /index.html
-# Last substantive edit to this page. Bump it when the bio, experience, or
-# projects change; the sitemap uses it with the newest post date for <lastmod>.
-updated: 2026-10-18
+# Last substantive edit to this page. Bump it when the intro, work, certifications,
+# or projects change; the sitemap uses it with the newest post date for <lastmod>.
+updated: 2026-11-16
 listsPosts: true
 pageTitle: "Theo Brucker, CISSP | Cybersecurity Consultant"
 ogTitle: "Theo Brucker, CISSP"
-description: "Personal site of Theo Brucker, a CISSP who builds and assesses cybersecurity programs, with his CMMC and NIST SP 800-171 experience, projects, and blog."
+description: "Personal site of Theo Brucker, a CMMC Certified Assessor and CISSP, with his CMMC and NIST SP 800-171 experience, certifications, projects, and blog."
 ---
+{#- The name, headshot, and intro are in _includes/home-band.njk. -#}
 
-<section id="intro">
-    <p class="lede">I'm a cybersecurity professional who builds and manages cybersecurity programs that enable successful business outcomes while identifying and addressing real risk, from nation-state adversaries to regulatory burdens. I've owned security programs and assess them now as a consultant, so I know what separates a program that checks the box from one that is truly resilient and enables your business.</p>
-    <div class="cta-row">
-        <a href="/blog/" class="cta-button">Read my blog</a>
-        <a href="/#contact" class="cta-button ghost">Get in touch</a>
+<section id="writing">
+    <h2>Writing</h2>
+    <ul class="post-list">
+    {%- for post in collections.posts | slice5 %}
+        <li>
+            <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+            <p><em><time datetime="{{ post.date | dateOnly }}">{{ post.date | readableDate }}</time>.</em> {{ post.data.summary }}</p>
+        </li>
+    {%- endfor %}
+    </ul>
+    <p class="blog-foot"><a href="/blog/">All posts</a> or <a href="/feed.xml">subscribe by RSS</a></p>
+</section>
+
+<section id="work">
+    <h2>Work</h2>
+    <div class="entry">
+        <h3>Staff Consultant, CMMC at A-LIGN</h3>
+        <p class="entry-meta">July 2026 to present</p>
+        <p>CMMC readiness assessments and CMMC Level 2 assessments for defense contractors, against NIST SP 800-171 and DFARS 252.204-7012 and 252.204-7021. The work covers scoping, enclave boundaries, evidence and control implementation, and advice on gaps before a formal assessment.</p>
+    </div>
+    <div class="entry">
+        <h3>ISSM at Fiber Materials Inc.</h3>
+        <p class="entry-meta">July 2025 to July 2026</p>
+        <p>Built the security program from scratch and ran the CMMC Level 2 effort from gap assessment through C3PAO engagement. Hardened and maintained classified systems under DCSA oversight using RMF and NIST SP 800-53, deployed EDR, SIEM, ITDR and MFA, and reported risk to the executive team.</p>
+    </div>
+    <div class="entry">
+        <h3>SOC Analyst I and II at Systems Engineering</h3>
+        <p class="entry-meta">August 2022 to June 2025</p>
+        <p>Security operations and incident response across about 100 client environments. Wrote the IR playbook that cut triage time 20 percent.</p>
     </div>
 </section>
 
-<section id="about">
-    <h2 class="eyebrow">About</h2>
-    <div class="about-grid">
-        <picture>
-            <source type="image/webp" srcset="/images/theo-brucker-336.webp 336w, /images/theo-brucker-672.webp 672w" sizes="(max-width: 640px) 140px, 168px">
-            <img src="/images/theo-brucker-336.jpg" srcset="/images/theo-brucker-336.jpg 336w, /images/theo-brucker-800.jpg 800w" sizes="(max-width: 640px) 140px, 168px" width="336" height="504" alt="Headshot of Theo Brucker">
-        </picture>
-        <div>
-            <p>I'm a cybersecurity professional who builds and evaluates programs that identify and address risk, whether the threat is a nation-state adversary or a regulatory obligation. Since July 2026 I have been a Staff Consultant on the CMMC practice at A-LIGN, where I run readiness assessments and CMMC Level 2 assessments against NIST 800-171.</p>
-            <p>I came to that work from the other side of the table. As ISSM at a defense manufacturer I built a cybersecurity program from nothing: sourcing and deploying EDR, SIEM, ITDR, and MFA, standing up vulnerability management and security awareness, hardening classified systems under DCSA and NIST 800-53, and carrying a CMMC Level 2 effort from gap assessment through control implementation and C3PAO engagement. Before that I spent three years as a SOC analyst at an MSSP, handling incident response across roughly 100 client environments.</p>
-            <p>Having implemented 800-171 under a deadline before I ever assessed against it shapes how I read a control, and what I think separates a program that passes from one that actually works. In my free time I build and break security tools.</p>
-        </div>
-    </div>
-</section>
-
-<section id="experience">
-    <h2 class="eyebrow">Experience</h2>
-
-    <div class="role">
-        <div class="logo"><img src="/images/align-logo.png" width="1014" height="473" alt="A-LIGN logo"></div>
-        <div>
-            <div class="role-head">
-                <h3>Staff Consultant, CMMC &mdash; A-LIGN</h3>
-                <span class="dates">Jul 2026 &ndash; present</span>
-            </div>
-            <p>Deliver CMMC readiness assessments and CMMC Level 2 assessments for defense contractors, evaluating implementation of NIST 800-171 controls against DFARS 252.204-7012/7021 obligations. Assess scoping and enclave boundaries, evidence quality, and control implementation, and advise organizations on closing gaps ahead of a formal assessment.</p>
-        </div>
-    </div>
-
-    <div class="role">
-        <div class="logo"><img src="/images/fmi-logo.png" width="204" height="192" alt="Fiber Materials Inc. logo"></div>
-        <div>
-            <div class="role-head">
-                <h3>Cyber Security Specialist / ISSM &mdash; Fiber Materials Inc.</h3>
-                <span class="dates">Jul 2025 &ndash; Jul 2026</span>
-            </div>
-            <p>ISSM for the organization, owning cybersecurity across classified and unclassified systems. Led the CMMC Level 2 effort from gap assessment through control implementation and C3PAO assessor engagement, aligned to NIST 800-171 and DFARS 252.204-7012/7021. Built and maintained classified systems under DCSA and NIST 800-53 requirements. Sourced and deployed EDR, SIEM, ITDR, and MFA solutions; built vulnerability management and security awareness programs; reported cybersecurity risk and compliance status directly to executive leadership.</p>
-        </div>
-    </div>
-
-    <div class="role">
-        <div class="logo"><img src="/images/se-logo.jpeg" width="400" height="400" alt="Systems Engineering logo"></div>
-        <div>
-            <div class="role-head">
-                <h3>SOC Analyst I &amp; II &mdash; Systems Engineering</h3>
-                <span class="dates">Aug 2022 &ndash; Jun 2025</span>
-            </div>
-            <p>24/7 SOC operations for roughly 100 client environments. Shadowed incident response on active breaches including BEC, ransomware, and insider threat. Created an incident response playbook that reduced triage times by 20 percent, developed automation tooling, and served as SME on SIEM, SOAR, and XDR platforms. Started as a network engineering intern in May 2022.</p>
-        </div>
-    </div>
+<section id="certifications">
+    <h2>Certifications</h2>
+    <ul class="cert-list">
+        <li><a href="https://www.credly.com/badges/82f3e258-e6df-42f9-9165-f2ecc875f341" rel="noopener noreferrer"><strong>CMMC Certified Assessor (CCA)</strong></a><span class="issuer">ISACA, 2026</span></li>
+        <li><strong>CISSP</strong><span class="issuer">ISC2, 2026</span></li>
+        <li><strong>CMMC Certified Professional (CCP)</strong><span class="issuer">The Cyber AB, 2026</span></li>
+        <li><strong>CompTIA Security+</strong><span class="issuer">CompTIA, 2023</span></li>
+    </ul>
+    <p>B.S. in Computer Science, University of Maine, 2024.</p>
 </section>
 
 <section id="projects">
-    <h2 class="eyebrow">Projects</h2>
-    <div class="register">
-        <details>
-            <summary>
-                <span class="indicator" aria-hidden="true"></span>
-                <span class="reg-title">Scam Awareness Training</span>
-                <span class="reg-tags"><span class="tag">Awareness</span><span class="tag">Social Engineering</span></span>
-            </summary>
-            <div class="reg-body">
-                <p>A free, five-minute security awareness training for people who do not work in technology, covering the warning signs of social engineering, how to check whether a call is real, and what to do after a scam. <a href="/how-to-spot-a-scam/">View or download the training</a>.</p>
-            </div>
-        </details>
-        <details>
-            <summary>
-                <span class="indicator" aria-hidden="true"></span>
-                <span class="reg-title">CMMC 2.0 Level 2 Program Build</span>
-                <span class="reg-tags"><span class="tag">CMMC 2.0</span><span class="tag">NIST 800-171</span><span class="tag">GRC</span></span>
-            </summary>
-            <div class="reg-body">
-                <p>Organization-wide owner of CMMC 2.0 Level 2 readiness as ISSM, leading the effort from initial gap assessment through NIST 800-171 control implementation, policy and procedure development, evidence collection, executive reporting, and ongoing C3PAO assessor engagement. Managed relationships with third-party assessors and consultants while staying current on CMMC 2.0 rulemaking and DFARS 252.204-7012/7021 timelines.</p>
-            </div>
-        </details>
-        <details>
-            <summary>
-                <span class="indicator" aria-hidden="true"></span>
-                <span class="reg-title">Classified Systems</span>
-                <span class="reg-tags"><span class="tag">NIST 800-53</span><span class="tag">DCSA</span><span class="tag">RMF</span></span>
-            </summary>
-            <div class="reg-body">
-                <p>As ISSM, built and hardened classified systems under DCSA oversight and NIST 800-53 control requirements, and owned their ongoing security management. Established the risk management processes, documentation, and continuous monitoring needed to maintain accreditation for a defense manufacturer.</p>
-            </div>
-        </details>
-        <details>
-            <summary>
-                <span class="indicator" aria-hidden="true"></span>
-                <span class="reg-title">Incident Response Playbook</span>
-                <span class="reg-tags"><span class="tag">IR</span><span class="tag">Documentation</span></span>
-            </summary>
-            <div class="reg-body">
-                <p>Developed and maintained a triage and response playbook for an active team of 10 SOC analysts, reducing time to respond and increasing consistency across the board. Follows established incident response standards and focuses on detection, initial response, mitigation, and escalation and triage processes.</p>
-            </div>
-        </details>
-        <details>
-            <summary>
-                <span class="indicator" aria-hidden="true"></span>
-                <span class="reg-title">MDR Deployments at Scale</span>
-                <span class="reg-tags"><span class="tag">Deployment</span><span class="tag">Leadership</span></span>
-            </summary>
-            <div class="reg-body">
-                <p>Deployed MDR solutions to dozens of clients in under two months across cloud, hybrid, and on-prem topologies. Drove the team to beat a strict deadline by encouraging cross-team collaboration and being personally available to troubleshoot or advise at every step.</p>
-            </div>
-        </details>
-        <details>
-            <summary>
-                <span class="indicator" aria-hidden="true"></span>
-                <span class="reg-title">Logging Verification Tool</span>
-                <span class="reg-tags"><span class="tag">Automation</span><span class="tag">Monitoring</span></span>
-            </summary>
-            <div class="reg-body">
-                <p>Built a tool that verifies logging integrity across 50 client environments in under 30 seconds, replacing a manual process that took at least 20 hours a month and could never be as thorough. Guaranteed a baseline of visibility into client networks that had not been achievable before.</p>
-            </div>
-        </details>
-        <details>
-            <summary>
-                <span class="indicator" aria-hidden="true"></span>
-                <span class="reg-title">ML-Powered Network Intrusion Detection System</span>
-                <span class="reg-tags"><span class="tag">ML</span><span class="tag">Network</span><span class="tag">DevOps</span></span>
-            </summary>
-            <div class="reg-body">
-                <p>Full-stack NIDS using transformer-based models to catch complex anomalies at competitive rates on common intrusion and anomaly detection datasets, with CI/CD and containerization for flexible scaling. <a href="https://github.com/theodore-brucker/CoveSecurity" target="_blank" rel="noopener noreferrer">Source on GitHub</a>.</p>
-            </div>
-        </details>
-    </div>
-</section>
-
-<section id="education">
-    <h2 class="eyebrow">Education &amp; Certifications</h2>
-    <ul class="contact-list">
-        <li><span class="k">2026</span><span>CISSP &middot; <a href="https://www.credly.com/badges/82f3e258-e6df-42f9-9165-f2ecc875f341/public_url" target="_blank" rel="noopener noreferrer">CMMC Certified Assessor (CCA)</a> &middot; CMMC Certified Professional (CCP)</span></li>
-        <li><span class="k">2024</span><span>B.S. in Computer Science, University of Maine</span></li>
-        <li><span class="k">2023</span><span>CompTIA Security+</span></li>
-    </ul>
-</section>
-
-<section id="blog">
-    <h2 class="eyebrow">Blog</h2>
-    <p>Weekly blog on building cybersecurity programs and interesting side projects or news.</p>
-    <ul class="post-list">
-    {% for post in collections.posts | slice5 %}
-        <li>
-            <span class="post-date"><time datetime="{{ post.date | dateOnly }}">{{ post.date | readableDate }}</time></span>
-            <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-            <p>{{ post.data.summary }}</p>
-        </li>
-    {% endfor %}
-    </ul>
-    <div class="blog-foot">
-        <a href="/blog/" class="cta-button ghost">All posts</a>
-        <a href="/feed.xml" class="rss-link">Subscribe via RSS</a>
-    </div>
+    <h2>Projects</h2>
+    <p class="project"><a href="https://github.com/theodore-brucker/threat-radar" rel="noopener noreferrer"><strong>Threat Radar</strong></a>. An SSH honeypot on a cloud VPS with its own analysis dashboard. New malware samples go to VirusTotal and MalwareBazaar under my name.</p>
+    <p class="project"><a href="/how-to-spot-a-scam/"><strong>How to spot a scam</strong></a>. A free five-minute awareness training for people outside tech.</p>
+    <p class="project"><strong>Logging verification tool</strong>. Checks logging across 50 client environments in under 30 seconds. It replaced 20 or more hours a month of manual checks.</p>
+    <p class="project"><a href="https://github.com/theodore-brucker/CoveSecurity" rel="noopener noreferrer"><strong>ML network intrusion detection</strong></a>. A transformer-based NIDS tested on common intrusion datasets, containerized, with CI/CD.</p>
 </section>
 
 <section id="contact">
-    <h2 class="eyebrow">Contact</h2>
-    <ul class="contact-list">
-        <li><span class="k">Email</span><a href="mailto:bruckertheodore@gmail.com">bruckertheodore@gmail.com</a></li>
-        <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/theobrucker/" target="_blank" rel="noopener noreferrer">linkedin.com/in/theobrucker</a></li>
-        <li><span class="k">GitHub</span><a href="https://github.com/theodore-brucker" target="_blank" rel="noopener noreferrer">theodore-brucker</a></li>
-    </ul>
+    <h2>Contact</h2>
+    <p class="contact-line"><a href="mailto:bruckertheodore@gmail.com">bruckertheodore@gmail.com</a>, <a href="https://www.linkedin.com/in/theobrucker/" rel="noopener noreferrer">LinkedIn</a> or <a href="https://github.com/theodore-brucker" rel="noopener noreferrer">GitHub</a>.</p>
 </section>
