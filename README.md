@@ -16,6 +16,7 @@ site/
     *.md                  one file per post
   _includes/
     base.njk              shell: head tags, JSON-LD, nav, footer, disclaimer
+    home-band.njk         homepage header: nav, headshot, name, intro
     post.njk              post layout
     breadcrumb.njk        visible breadcrumb trail (matches the JSON-LD)
     topic.njk             topic hub layout
@@ -35,6 +36,7 @@ lib/posts.js              date and tag helpers (related posts, topic matching)
 netlify/plugins/indexnow  submits changed URLs to IndexNow after production deploys
 scripts/new-post.js       post scaffolder
 scripts/validate-jsonld.mjs  checks the built JSON-LD (runs in CI)
+docs/DESIGN.md            colors, type, layout, and patterns to leave out
 docs/seo/                 audit, Cloudflare checklist, content plan, off-site and measurement notes
 ```
 

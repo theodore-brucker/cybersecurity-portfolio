@@ -12,13 +12,14 @@ export default {
     // and this site's, are that structured data may only describe what a
     // visitor can see, so keep every value here in sync with the homepage text.
     alternateName: "Theodore Brucker", // matches the theodore-brucker GitHub handle shown on the homepage
-    // Third-person form of the first sentence of the About section.
+    // Third-person form of the first sentence of the homepage intro
+    // (site/_includes/home-band.njk).
     description:
-      "Cybersecurity professional who builds and evaluates programs that identify and address risk, whether the threat is a nation-state adversary or a regulatory obligation.",
+      "CMMC Certified Assessor at A-LIGN who assesses defense contractors against NIST SP 800-171.",
     jobTitle: "Staff Consultant, CMMC",
     worksFor: { name: "A-LIGN", url: "https://www.a-lign.com/" },
     alumniOf: { name: "University of Maine", url: "https://umaine.edu/" },
-    // Names match the Education & Certifications list on the homepage.
+    // Names match the Certifications section on the homepage.
     credentials: [
       {
         name: "CISSP",
@@ -49,7 +50,7 @@ export default {
         issuer: "alumniOf",
       },
     ],
-    // Each topic appears on the homepage in the About, Experience, or Projects text.
+    // Each topic appears in the homepage intro, Work, or Projects text.
     knowsAbout: [
       "CMMC",
       "NIST SP 800-171",
@@ -59,9 +60,8 @@ export default {
       "Incident response",
       "Security operations",
       "Risk Management Framework (RMF)",
-      "Governance, risk, and compliance (GRC)",
     ],
-    // Portrait shown in the About section; 800 x 1200, metadata stripped.
+    // Portrait shown in the homepage header; 800 x 1200, metadata stripped.
     image: { src: "/images/theo-brucker-800.jpg", width: 800, height: 1200 },
   },
 

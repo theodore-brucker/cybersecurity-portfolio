@@ -14,38 +14,47 @@
         <title><xsl:value-of select="atom:feed/atom:title"/></title>
         <meta name="robots" content="noindex"/>
         <style>
+          @font-face {
+            font-family: 'Charis SIL';
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/charis-sil-latin-400-normal.woff2') format('woff2');
+          }
+          @font-face {
+            font-family: 'Charis SIL';
+            font-weight: 700;
+            font-display: swap;
+            src: url('/fonts/charis-sil-latin-700-normal.woff2') format('woff2');
+          }
           :root {
-            --paper: #F5F7F6;
-            --ink: #0D1B26;
-            --slate: #5C6B70;
-            --line: #D3DBD8;
-            --fill: #EBEFED;
-            --federal: #1A4B8C;
+            --ink: #171C26;
+            --muted: #4A5260;
+            --line: #DCE0E8;
+            --tint: #EEF3F0;
+            --green: #22553F;
           }
           *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
           body {
-            font-family: 'Public Sans', 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.65;
+            font-family: 'Charis SIL', Charter, Georgia, serif;
+            line-height: 1.6;
             color: var(--ink);
-            background-color: var(--paper);
+            background: #FFFFFF;
             max-width: 760px;
             margin: 0 auto;
             padding: 2rem 1.25rem 3rem;
-            font-size: clamp(14px, 4vw, 16px);
+            font-size: clamp(16px, 4vw, 18px);
           }
           h1 {
-            font-size: clamp(1.5rem, 6vw, 2.2rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-size: clamp(1.75rem, 6vw, 2.4rem);
+            line-height: 1.1;
             margin-bottom: 0.5rem;
           }
-          h2 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+          h2 { font-size: 1.3rem; line-height: 1.3; margin-bottom: 0.15rem; }
           h2 a { color: var(--ink); text-decoration: none; }
-          h2 a:hover { color: var(--federal); text-decoration: underline; }
-          a { color: var(--federal); }
+          h2 a:hover { text-decoration: underline; }
+          a { color: var(--green); text-underline-offset: 3px; }
           .banner {
-            background-color: var(--fill);
-            border-left: 3px solid var(--federal);
+            background: var(--tint);
             padding: 1rem 1.2rem;
             margin: 1.5rem 0 2rem;
           }
@@ -53,33 +62,24 @@
           .banner p:last-child { margin-bottom: 0; }
           .url {
             display: block;
-            font-family: 'IBM Plex Mono', 'Consolas', monospace;
-            background-color: var(--ink);
-            color: var(--paper);
+            font-family: ui-monospace, Consolas, monospace;
+            background: var(--ink);
+            color: #F2F4F7;
             padding: 0.7rem 0.9rem;
             overflow-x: auto;
             white-space: nowrap;
             margin-top: 0.5rem;
             font-size: 0.85rem;
           }
-          .subtitle { color: var(--slate); margin-bottom: 0.5rem; }
-          article {
-            border-top: 1px solid var(--line);
-            padding-top: 1.25rem;
-            margin-top: 1.25rem;
-          }
-          .meta {
-            font-family: 'IBM Plex Mono', 'Consolas', monospace;
-            color: var(--slate);
-            font-size: 0.78rem;
-            margin-bottom: 0.5rem;
-          }
+          .subtitle { color: var(--muted); margin-bottom: 0.5rem; }
+          article { margin-top: 1.6rem; }
+          .meta { color: var(--muted); font-style: italic; margin-bottom: 0.25rem; }
           footer {
             border-top: 1px solid var(--line);
             margin-top: 2.5rem;
             padding-top: 1.25rem;
-            font-size: 0.8rem;
-            color: var(--slate);
+            font-size: 0.88rem;
+            color: var(--muted);
           }
           footer p { margin-bottom: 0.75rem; }
         </style>
