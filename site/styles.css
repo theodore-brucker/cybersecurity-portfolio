@@ -45,6 +45,9 @@
 
     --measure: 720px;
     --gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+    /* Strong ease-out for press feedback. Hover color changes use plain ease. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 *, *::before, *::after {
@@ -69,8 +72,19 @@ body {
 
 ::selection { background: var(--green); color: #fff; }
 
-a { color: var(--green); text-underline-offset: 3px; }
-a:hover { color: var(--green-deep); }
+/* Underlines rest at partial strength and fill in on hover, so links answer
+   the pointer without moving. Browsers without color-mix() drop the rule and
+   show a full-strength underline. */
+a {
+    color: var(--green);
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    a:hover { color: var(--green-deep); text-decoration-color: currentColor; }
+}
 
 a:focus-visible,
 button:focus-visible,
@@ -78,6 +92,10 @@ summary:focus-visible {
     outline: 2px solid var(--green);
     outline-offset: 3px;
 }
+
+/* The green ring is invisible on the band (1.4:1), so it turns white there. */
+.band :focus-visible,
+.site-head :focus-visible { outline-color: var(--band-text); }
 
 strong { font-weight: 700; }
 
@@ -102,6 +120,9 @@ h3 {
     line-height: 1.3;
     font-weight: 700;
 }
+
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
 
 hr {
     border: none;
@@ -146,9 +167,9 @@ header.site-head {
     align-items: baseline;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.5rem 1.75rem;
-    padding-top: 1.1rem;
-    padding-bottom: 1.1rem;
+    gap: 0 1.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 /* Wraps the wordmark: a <p> on inner pages. It adds no styling. */
@@ -160,31 +181,46 @@ header.site-head {
 }
 
 .wordmark {
+    display: inline-block;
+    padding-block: 0.45rem;
     font-weight: 700;
     font-size: 1.2rem;
     color: var(--band-text);
     text-decoration: none;
 }
 
-.wordmark:hover { color: var(--band-text); text-decoration: underline; }
-
 .site-nav ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem 1.6rem;
+    gap: 0 1.6rem;
 }
 
+/* The vertical padding makes each nav link a 44px tap target without
+   changing how the row looks. */
 .site-nav a,
 .band-nav a {
+    display: inline-block;
+    padding-block: 0.625rem;
     color: var(--band-text);
     font-size: 0.95rem;
 }
 
-.site-nav a:hover,
-.band-nav a:hover { color: var(--band-text); text-decoration-thickness: 2px; }
+@media (hover: hover) and (pointer: fine) {
+    .wordmark:hover { color: var(--band-text); text-decoration: underline; }
 
-.site-nav a[aria-current="page"] { text-decoration-thickness: 2px; }
+    .site-nav a:hover,
+    .band-nav a:hover {
+        color: var(--band-text);
+        text-decoration-color: currentColor;
+        text-decoration-thickness: 2px;
+    }
+}
+
+.site-nav a[aria-current="page"] {
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+}
 
 /* ---------- Homepage band ---------- */
 
@@ -194,7 +230,7 @@ header.site-head {
 }
 
 .band .shell {
-    padding-top: 1.75rem;
+    padding-top: 1.25rem;
     padding-bottom: 3.75rem;
 }
 
@@ -203,8 +239,8 @@ header.site-head {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 0.25rem 1.6rem;
-    margin-bottom: 2.5rem;
+    gap: 0 1.6rem;
+    margin-bottom: 2rem;
 }
 
 .band-row {
@@ -255,14 +291,22 @@ main.home {
 
 .home > section {
     max-width: var(--measure);
-    margin-bottom: 3.75rem;
+    margin-bottom: 4rem;
     scroll-margin-top: 1rem;
+}
+
+/* Section headings sit a clear step above the entries under them. Every entry
+   title on the homepage (posts and jobs) shares one size. */
+.home > section > h2 {
+    font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.125rem);
+    margin-bottom: 1.25rem;
 }
 
 .home .entry { margin-bottom: 1.6rem; }
 .home .entry:last-child { margin-bottom: 0; }
 
-.home .entry h3 { font-size: 1.3rem; margin-bottom: 0; }
+.home .entry h3,
+.home .post-list h3 { font-size: 1.3rem; margin-bottom: 0.1rem; }
 
 .entry-meta {
     color: var(--muted);
@@ -325,6 +369,8 @@ main.home {
 .reg-tags,
 .post-tags { display: block; color: var(--muted); font-style: italic; }
 
+.post-list .reg-tags { margin-top: 0.3rem; }
+
 .tag + .tag::before { content: ", "; }
 
 /* ---------- Breadcrumb ---------- */
@@ -374,9 +420,20 @@ h2.eyebrow { margin-top: 2.25rem; }
     color: #fff;
     font-weight: 700;
     text-decoration: none;
+    transition: background-color 150ms ease, transform 160ms var(--ease-out);
 }
 
-.cta-button:hover { background: var(--green-deep); color: #fff; }
+@media (hover: hover) and (pointer: fine) {
+    .cta-button:hover { background: var(--green-deep); color: #fff; }
+}
+
+/* A small press so the button answers the click. Reduced motion keeps only
+   the color change. */
+.cta-button:not(.ghost):active { transform: scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+    .cta-button:not(.ghost):active { transform: none; }
+}
 
 .cta-button.ghost {
     padding: 0;
@@ -386,7 +443,9 @@ h2.eyebrow { margin-top: 2.25rem; }
     text-decoration: underline;
 }
 
-.cta-button.ghost:hover { background: none; color: var(--green-deep); }
+@media (hover: hover) and (pointer: fine) {
+    .cta-button.ghost:hover { background: none; color: var(--green-deep); }
+}
 
 /* ---------- Post pages ---------- */
 
@@ -507,7 +566,9 @@ footer.site-foot .shell {
 /* ---------- Phones ---------- */
 
 @media (max-width: 640px) {
-    .band-nav ul { justify-content: flex-start; margin-bottom: 1.75rem; }
+    /* Tight enough that all five links fit on one row at 375px and up. */
+    .band-nav ul { justify-content: flex-start; column-gap: clamp(0.7rem, 3.2vw, 1.25rem); margin-bottom: 1.25rem; }
+    .site-nav ul { column-gap: clamp(0.7rem, 3.2vw, 1.25rem); }
     .band .shell { padding-bottom: 2.75rem; }
     .band-photo img { width: 200px; height: 250px; }
     main.home { padding-top: 2.75rem; }
